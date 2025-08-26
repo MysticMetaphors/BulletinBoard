@@ -1,3 +1,5 @@
+import { Link } from "@inertiajs/react"
+
 export default function Navigation() {
     function openNav() {
         const nav = document.getElementById('navbar-default')
@@ -20,17 +22,17 @@ export default function Navigation() {
                     <div className="hidden w-full md:block md:w-auto" id="navbar-default">
                         <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 rounded-lg md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0">
                             <li>
-                                <a href="#" className="block py-2 px-3 text-white rounded-sm md:border-0 md:p-0">Home</a>
+                                <Link href={route('home')} className="block py-2 px-3 text-white rounded-sm md:border-0 md:p-0">Home</Link>
                             </li>
                             <li>
-                                <a href="#" className="block py-2 px-3 text-white rounded-sm md:border-0 md:p-0">Announcements</a>
+                                <Link href="#" className="block py-2 px-3 text-white rounded-sm md:border-0 md:p-0">Announcements</Link>
                             </li>
                             <li>
-                                <a href="#" className="block py-2 px-3 text-white rounded-sm md:border-0 md:p-0">Events</a>
+                                <Link href="#" className="block py-2 px-3 text-white rounded-sm md:border-0 md:p-0">Event</Link>
                             </li>
-                            {/* <li>
-                                <a href="#" className="block py-2 px-3 text-white rounded-sm md:border-0 md:p-0">SSC Members</a>
-                            </li> */}
+                            <li>
+                                <Link href={route('login')} className="block py-2 px-3 text-white border border-white rounded-sm px-3 md:py-0">Login</Link>
+                            </li>
                         </ul>
                     </div>
                 </div>

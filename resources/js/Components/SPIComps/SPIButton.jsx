@@ -1,4 +1,3 @@
-import { Inertia } from "@inertiajs/inertia"
 import { router } from "@inertiajs/react"
 import { route } from "ziggy-js"
 

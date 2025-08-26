@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "flowbite-typography";
 
 @theme {
   --color-green-primary: #2F7043;
