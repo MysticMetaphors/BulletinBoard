@@ -4,13 +4,16 @@ import SPIButton from "../Components/SPIComps/SPIButton";
 import ProfileDropdown from "../Components/ProfileDropdown";
 import { route } from "ziggy-js";
 
-export default function DashboardLayout({children}) {
+import logo from '../assets/SkillPowerInstituteLogo.png'
+
+export default function DashboardLayout({ children }) {
     const [activePage, setActivePage] = useState(null);
 
     function openNav() {
         const nav = document.getElementById('logo-sidebar')
         nav.classList.toggle('-translate-x-full')
     }
+
     return (
         <>
             <nav className="fixed top-0 z-50 w-full bg-green-primary border-b border-gray-200">
@@ -24,13 +27,13 @@ export default function DashboardLayout({children}) {
                                 </svg>
                             </button>
                             <Link href={route('home')} className="flex ms-2 md:me-24">
-                                <img src="SkillPowerInstituteLogo.png" className="h-8 w-8 me-3" alt="FlowBite Logo" />
+                                <img src={logo} className="h-8 w-8 me-3" alt="FlowBite Logo" />
                                 <span className="self-center text-2xl whitespace-nowrap text-primaryYellow-1000 font-bold hidden md:block sm:hidden"></span>
                             </Link>
                         </div>
                         <div className="flex items-center">
-                            {activePage == "announcement" ? <SPIButton text="New Announcement" link_to={'createAnno'} theme={'secondary'}/>
-                                : activePage == "event" ? <SPIButton text="New Event" link_to={'home'} theme={'secondary'}/> : ''}
+                            {activePage == "announcement" ? <SPIButton text="New Announcement" link_to={'announcement.create'} theme={'secondary'} />
+                                : activePage == "event" ? <SPIButton text="New Event" link_to={'createEvent'} theme={'secondary'} /> : ''}
 
                             <div className="flex items-center ms-3">
                                 <ProfileDropdown />
@@ -76,12 +79,12 @@ export default function DashboardLayout({children}) {
                             </a>
                         </li>
                         <li>
-                            <a href="#" onClick={() => setActivePage(null)} className="flex items-center p-2 text-primaryGrey-1000 rounded-lg">
+                            <Link href={route('ssc')} onClick={() => setActivePage("ssc")} className="flex items-center p-2 text-primaryGrey-1000 rounded-lg">
                                 <span className="material-symbols-rounded shrink-0 w-5 h-5 text-green-primary transition duration-75">
                                     group
                                 </span>
-                                <span className="ms-3">SSC</span>
-                            </a>
+                                <span className="flex-1 ms-3 whitespace-nowrap">SSC</span>
+                            </Link>
                         </li>
                         <li>
                             <a href="#" onClick={() => setActivePage(null)} className="flex items-center p-2 text-primaryGrey-1000 rounded-lg">
@@ -105,6 +108,8 @@ export default function DashboardLayout({children}) {
 
             <div className="p-4 h-screen sm:ml-64">
                 {children}
+            </div>
+            <div className="absolute bottom-10 h-fit right-10 space-y-4" id="toast-append">
             </div>
         </>
     )
