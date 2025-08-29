@@ -1,14 +1,24 @@
 import { Link } from '@inertiajs/react';
 import React, { useState } from 'react';
 import { route } from 'ziggy-js';
+import { appendToast } from '../../global';
 
 export default function Login() {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [form, setForm] = useState({
+        email: '',
+        password: '',
+        remember: false
+    })
+
+    function handleChange(e) {
+        setForm({ ...form, [e.target.name]: e.target.value });
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('Email:', email, 'Password:', password);
+        appendToast('toast-append', 'success', 'Logged successfully!')
+        appendToast('toast-append', 'warning', 'Fill in all fields')
+        appendToast('toast-append', 'error', 'Invalid cridentials.')
     };
 
     return (
@@ -19,15 +29,15 @@ export default function Login() {
                     <h1 className="text-xl font-bold leading-tight tracking-tight text-white md:text-2xl">
                         Sign in to your account
                     </h1>
-                    <form className="space-y-4 md:space-y-6" action="#">
+                    <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
                         <div className='space-y-4'>
                             <div className='w-full '>
                                 <label htmlFor="email" className="block mb-2 text-sm font-medium text-white">Your email</label>
-                                <input type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-white focus:border-white block w-full p-2.5" placeholder="example@gmail.com" required />
+                                <input type="email" name="email" value={form.email} onChange={handleChange} id="email" className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-white focus:border-white block w-full p-2.5" placeholder="example@gmail.com"  />
                             </div>
                             <div className='w-full '>
                                 <label htmlFor="password" className="block mb-2 text-sm font-medium text-white">Password</label>
-                                <input type="password" name="password" id="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-white focus:border-white block w-full p-2.5" required />
+                                <input type="password" name="password" value={form.password} onChange={handleChange} id="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-white focus:border-white block w-full p-2.5"  />
                             </div>
                         </div>
                         <button type="submit" className="w-full text-black bg-white hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
@@ -36,7 +46,7 @@ export default function Login() {
                         <div className="flex items-center mb-0 justify-between">
                             <div className="flex items-start">
                                 <div className="flex items-center h-5">
-                                    <input id="remember" aria-describedby="remember" type="checkbox" className="w-4 h-4 border border-gray-300 rounded bg-gray-50" required />
+                                    <input id="remember" name='remember' value={form.remember} onChange={handleChange} aria-describedby="remember" type="checkbox" className="w-4 h-4 border border-gray-300 rounded bg-gray-50"  />
                                 </div>
                                 <div className="ml-3 text-sm">
                                     <label htmlFor="remember" className="text-white">Remember me</label>
@@ -66,7 +76,7 @@ export default function Login() {
                         <Link href={route('home')} className='absolute top-5 right-10 text-white font-semibold flex gap-2 items-center'>
                             <span className="material-symbols-rounded shrink-0 w-5 h-5 text-white transition duration-75">
                                 arrow_left_alt
-                            </span> Go Back
+                            </span> Go Home
                         </Link>
                     </form>
                 </div>
@@ -78,6 +88,9 @@ export default function Login() {
                         "url('Featured.jpg')",
                 }}
             ></div>
+            <div id='toast-append' className='fixed bottom-10 right-10 space-y-4'>
+
+            </div>
         </section>
     );
 }

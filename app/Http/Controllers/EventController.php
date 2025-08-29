@@ -2,25 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Announcement;
+use App\Models\Event;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
-class AnnouncementController extends Controller
+class EventController extends Controller
 {
     public function index()
     {
-        return Inertia::render('Announcement');
+        return Inertia::render('Event');
     }
 
     public function dashboard()
     {
-        return Inertia::render('Dashboard/Announcement');
+        return Inertia::render('Dashboard/Event');
     }
 
     public function create()
     {
-        return Inertia::render('Dashboard/Event/CreateAnnounce');
+        return Inertia::render('Dashboard/Event/CreateEvent');
     }
 
     public function store(Request $request)
@@ -31,22 +31,22 @@ class AnnouncementController extends Controller
                 'content' => 'required|string',
             ]);
         } catch (\Illuminate\Validation\ValidationException $e) {
-            return Inertia::render('Dashboard/Event/CreateAnnounce', [
+            return Inertia::render('Dashboard/Event/CreateEvent', [
                 'errors' => $e->errors(),
             ]);
         }
 
         $validatedData['author'] = 1;
 
-        Announcement::create($validatedData);
-        return Inertia::render('Dashboard/Event/CreateAnnounce', [
+        Event::create($validatedData);
+        return Inertia::render('Dashboard/Event/CreateEvent', [
             'flash' => ['success' => true],
         ]);
     }
 
     public function show($id) {
-        $announce = Announcement::findOrFail($id);
-        if ($announce == null) return dd($announce);
-        return Inertia::render('AnnoView', $announce);
+        $event = Event::findOrFail($id);
+        if ($event == null) return dd($event);
+        return Inertia::render('EventView', $event);
     }
 }

@@ -2,11 +2,24 @@
 @plugin "flowbite-typography";
 
 @theme {
-  --color-green-primary: #2F7043;
-  --color-yellow-primary: #FFD73A;
+    --color-green-primary: #2F7043;
+    --color-yellow-primary: #FFD73A;
+
+    --animate-show-up: show-up 0.5s ease-out forwards;
+
+    @keyframes show-up {
+    0% {
+        opacity: 0;
+        transform: translateY(10px); /* start 10px below */
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0); /* move to original position */
+    }
+}
 }
 
 body {
-  background-color: #ffffe4;
-  color: #2f7042f3;
+    background-color: #ffffe4;
+    color: #2f7042f3;
 }

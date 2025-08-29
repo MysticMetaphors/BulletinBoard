@@ -1,14 +1,25 @@
 <?php
 
 use App\Http\Controllers\AnnouncementController;
+use App\Http\Controllers\EventController;
+
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-Route::get('/', function () {
-    return Inertia::render('Home');
-})->name('home');
+Route::get('/', [AnnouncementController::class, 'index'])->name('home');
+
+Route::get('announcement/dashboard', [AnnouncementController::class, 'dashboard'])
+    ->name('announcement.dashboard');
+Route::get('event/dashboard', [EventController::class, 'dashboard'])
+    ->name('event.dashboard');
 
 Route::resource('announcement', AnnouncementController::class);
+Route::resource('event', EventController::class);
+
+
+Route::get('/testview', function () {
+    return Inertia::render('AnnoView');
+});
 
 Route::get('/dashboard', function(){
     return Inertia::render('Dashboard/Dashboard');
@@ -21,10 +32,6 @@ Route::get('/announce', function(){
 Route::get('/ssc', function(){
     return Inertia::render('Dashboard/SSC');
 })->name('ssc');
-
-Route::get('/event', function(){
-    return Inertia::render('Dashboard/Event');
-})->name('event');
 
 Route::get('/createEvent', function(){
     return Inertia::render('Dashboard/Event/CreateEvent');

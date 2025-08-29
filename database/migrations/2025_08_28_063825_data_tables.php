@@ -25,6 +25,8 @@ return new class extends Migration
             $table->string('title');
             $table->string('content');
             $table->integer('author');
+            $table->dateTime('start')->useCurrent();
+            $table->dateTime('end')->useCurrent();
             $table->enum('status', ['Draft', 'Released', 'Cancelled', 'Deprecated']);
             $table->timestamps();
         });

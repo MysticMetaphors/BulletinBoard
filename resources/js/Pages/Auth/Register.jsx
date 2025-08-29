@@ -1,15 +1,25 @@
 import { Link } from '@inertiajs/react';
 import React, { useState } from 'react';
 import { route } from 'ziggy-js';
+import { appendToast } from '../../global';
 
 export default function Register() {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [form, setForm] = useState({
+        email: '',
+        password: '',
+        confPass: ''
+    })
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log('Email:', email, 'Password:', password);
-    };
+    function handleChange(e) {
+            setForm({ ...form, [e.target.name]: e.target.value });
+        };
+
+        const handleSubmit = (e) => {
+            e.preventDefault();
+            appendToast('toast-append', 'success', 'Logged successfully!')
+            appendToast('toast-append', 'warning', 'Fill in all fields')
+            appendToast('toast-append', 'error', 'Invalid cridentials.')
+        };
 
     return (
         <section className="bg-green-primary">
@@ -19,18 +29,18 @@ export default function Register() {
                     <h1 className="text-xl font-bold leading-tight tracking-tight text-white md:text-2xl">
                         Create an account
                     </h1>
-                    <form className="space-y-2 md:space-y-4" action="#">
+                    <form className="space-y-2 md:space-y-4" onSubmit={handleSubmit} action="#">
                         <div>
                             <label htmlFor="email" className="block mb-2 text-sm font-medium text-white">Your email</label>
-                            <input type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="example@gmail.com" required />
+                            <input type="email" value={form.email} onChange={handleChange} name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="example@gmail.com"  />
                         </div>
                         <div>
                             <label htmlFor="password" className="block mb-2 text-sm font-medium text-white">Password</label>
-                            <input type="password" name="password" id="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" required />
+                            <input type="password" value={form.password} onChange={handleChange} name="password" id="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"  />
                         </div>
                         <div>
                             <label htmlFor="confirm-password" className="block mb-2 text-sm font-medium text-white">Confirm password</label>
-                            <input type="password" name="confirm-password" id="confirm-password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" required />
+                            <input type="password" value={form.confPass} onChange={handleChange} name="confirm-password" id="confirm-password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"  />
                         </div>
                         <button type="submit" className="w-full mt-2 text-black bg-white hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
                             Create an account
@@ -57,7 +67,7 @@ export default function Register() {
                     <Link href={route('home')} className='absolute top-5 right-10 text-white font-semibold flex gap-2 items-center'>
                         <span className="material-symbols-rounded shrink-0 w-5 h-5 text-white transition duration-75">
                             arrow_left_alt
-                        </span> Go Back
+                        </span> Go Home
                     </Link>
                 </div>
                 <div
@@ -68,7 +78,9 @@ export default function Register() {
                     }}
                 ></div>
             </div>
+            <div id='toast-append' className='fixed bottom-10 right-10 space-y-4'>
 
+            </div>
         </section>
     );
 }

@@ -33,7 +33,7 @@ export default function DashboardLayout({ children }) {
                         </div>
                         <div className="flex items-center">
                             {activePage == "announcement" ? <SPIButton text="New Announcement" link_to={'announcement.create'} theme={'secondary'} />
-                                : activePage == "event" ? <SPIButton text="New Event" link_to={'createEvent'} theme={'secondary'} /> : ''}
+                                : activePage == "event" ? <SPIButton text="New Event" link_to={'event.create'} theme={'secondary'} /> : ''}
 
                             <div className="flex items-center ms-3">
                                 <ProfileDropdown />
@@ -55,7 +55,7 @@ export default function DashboardLayout({ children }) {
                             </Link>
                         </li>
                         <li>
-                            <Link href={route('announce')} onClick={() => setActivePage("announcement")} className="flex items-center p-2 text-primaryGrey-1000 rounded-lg">
+                            <Link href={route('announcement.dashboard')} onClick={() => setActivePage("announcement")} className="flex items-center p-2 text-primaryGrey-1000 rounded-lg">
                                 <span className="material-symbols-rounded shrink-0 w-5 h-5 text-green-primary transition duration-75">
                                     breaking_news
                                 </span>
@@ -63,7 +63,7 @@ export default function DashboardLayout({ children }) {
                             </Link>
                         </li>
                         <li>
-                            <Link href={route('event')} onClick={() => setActivePage("event")} className="flex items-center p-2 text-primaryGrey-1000 rounded-lg">
+                            <Link href={route('event.dashboard')} onClick={() => setActivePage("event")} className="flex items-center p-2 text-primaryGrey-1000 rounded-lg">
                                 <span className="material-symbols-rounded shrink-0 w-5 h-5 text-green-primary transition duration-75">
                                     event
                                 </span>

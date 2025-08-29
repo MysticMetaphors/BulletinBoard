@@ -17,7 +17,7 @@ export default function CreateAnnounce() {
     };
 
     function handleNext() {
-        if (form.title.length >= 30) {
+        if (form.title.length > 50) {
             appendToast('toast-append', 'error', 'Title cannot exceed 50 characters.')
             return
         }
