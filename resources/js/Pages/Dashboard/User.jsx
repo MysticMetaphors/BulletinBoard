@@ -1,26 +1,24 @@
 import { usePage } from "@inertiajs/react";
 import SPIBadges from "../../Components/SPIComps/SPIBadge";
 import DashboardLayout from "../../Layouts/DashboardLayout";
-import SPIDropdownMenu from "../../Components/SPIComps/SPIDropdownMenu";
-import formatDate from "../../global";
 
-export default function Announcement() {
-    const { anno } = usePage().props;
+export default function User() {
+    // const { anno } = usePage().props;
 
-    function setTheme(status) {
-        switch (status) {
-            case 'Released':
-                return 'success';
-            case 'Draft':
-                return 'warning';
-            case 'Cancelled':
-                return 'danger';
-            case 'Deprecated':
-                return 'danger';
-            default:
-                return 'info';
-        }
-    }
+    // function setTheme(status) {
+    //     switch (status) {
+    //         case 'Released':
+    //             return 'success';
+    //         case 'Draft':
+    //             return 'warning';
+    //         case 'Cancelled':
+    //             return 'danger';
+    //         case 'Deprecated':
+    //             return 'danger';
+    //         default:
+    //         return 'info';
+    //     }
+    // }
 
     return (
         <>
@@ -48,8 +46,8 @@ export default function Announcement() {
                         </select>
                     </div> */}
                 </div>
-                <div className="relative shadow-md">
-                    <table className="w-full text-sm text-left rtl:text-right text-gray-500 ">
+                <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+                    <table className="w-full text-sm text-left rtl:text-right text-gray-500">
                         <thead className="text-xs text-white uppercase bg-green-primary">
                             <tr>
                                 <th scope="col" className="px-6 py-3">
@@ -65,30 +63,44 @@ export default function Announcement() {
                                     Date Created
                                 </th>
                                 <th scope="col" className="px-6 py-3">
-
+                                    Action
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
-                            {anno.map((annos) => (
+                            {/* {anno.map((annos) => ( */}
                                 <tr className="bg-white border-b border-gray-200">
                                     <th scope="row" className="px-6 py-2 font-medium text-gray-900 whitespace-nowrap">
-                                        {annos.title}
+                                        {/* {annos.title} */}
                                     </th>
                                     <td className="px-6 py-2">
-                                        {annos.author}
+                                        {/* {annos.author} */}
                                     </td>
                                     <td className="px-6 py-2">
-                                        <SPIBadges theme={setTheme(annos.status)} text={annos.status} />
+                                        {/* <SPIBadges theme={setTheme(annos.status)} text={annos.status} /> */}
                                     </td>
                                     <td className="px-6 py-2">
-                                        {formatDate(annos.created_at)}
+                                        {/* {annos.title} */}
                                     </td>
-                                    <td className="px-6 py-2 flex">
-                                        <SPIDropdownMenu/>
+                                    <td className="px-6 py-2 flex gap-2">
+                                        <button type="button" className="p-1 cursor-pointer flex items-center rounded-lg bg-orange-200 text-orange">
+                                            <span className="material-symbols-rounded" style={{ color: 'darkorange' }}>
+                                                stylus
+                                            </span>
+                                        </button>
+                                        <button type="button" className="p-1 cursor-pointer flex items-center rounded-lg bg-blue-200 text-orange">
+                                            <span className="material-symbols-rounded" style={{ color: 'blue' }}>
+                                                clarify
+                                            </span>
+                                        </button>
+                                        <button type="button" className="p-1 cursor-pointer flex items-center rounded-lg bg-red-200 text-orange">
+                                            <span className="material-symbols-rounded" style={{ color: 'red' }}>
+                                                delete
+                                            </span>
+                                        </button>
                                     </td>
                                 </tr>
-                            ))}
+                            {/* ))} */}
                         </tbody>
                     </table>
                 </div>
@@ -126,4 +138,4 @@ export default function Announcement() {
     )
 }
 
-Announcement.layout = (page) => <DashboardLayout>{page}</DashboardLayout>;
+User.layout = (page) => <DashboardLayout>{page}</DashboardLayout>;

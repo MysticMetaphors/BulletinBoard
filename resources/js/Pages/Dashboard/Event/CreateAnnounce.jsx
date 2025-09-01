@@ -3,6 +3,7 @@ import { route } from "ziggy-js";
 import { router, usePage } from "@inertiajs/react";
 import DashboardLayout from "../../../Layouts/DashboardLayout";
 import { appendToast } from "../../../global";
+import RichTextEditor from "../../../Components/RichTextEditor";
 
 export default function CreateAnnounce() {
     const { errors, flash } = usePage().props;
@@ -88,7 +89,7 @@ export default function CreateAnnounce() {
 
                 <form className="lg:w-[50%]" onSubmit={handleSubmit}>
                     {/* ====================== Step 1 ====================== */}
-                    {/* <RichTextEditor /> */}
+
                     {step == 1 ?
                         <div>
                             <h1 className="text-lg font-semibold mb-4">Create Announcement</h1>
@@ -119,6 +120,8 @@ export default function CreateAnnounce() {
                             </div>
                         </div> : ''}
                 </form>
+
+                <RichTextEditor />
 
                 {/* <div id="step-2">
                     <form className="lg:w-[50%]">

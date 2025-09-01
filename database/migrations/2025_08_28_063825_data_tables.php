@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('announcement', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('content');
+            $table->text('content');
             $table->integer('author');
             $table->enum('status', ['Draft', 'Released', 'Cancelled', 'Deprecated']);
             $table->timestamps();
@@ -23,7 +23,7 @@ return new class extends Migration
         Schema::create('event', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('content');
+            $table->text('content');
             $table->integer('author');
             $table->dateTime('start')->useCurrent();
             $table->dateTime('end')->useCurrent();

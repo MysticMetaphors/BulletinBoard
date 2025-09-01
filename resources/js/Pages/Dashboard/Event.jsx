@@ -1,7 +1,27 @@
+import { usePage } from "@inertiajs/react";
 import SPIBadges from "../../Components/SPIComps/SPIBadge";
 import DashboardLayout from "../../Layouts/DashboardLayout";
+import SPIDropdownMenu from "../../Components/SPIComps/SPIDropdownMenu";
+import formatDate from "../../global";
 
 export default function Event() {
+    const { event } = usePage().props
+
+    function setTheme(status) {
+        switch (status) {
+            case 'Released':
+                return 'success';
+            case 'Draft':
+                return 'warning';
+            case 'Cancelled':
+                return 'danger';
+            case 'Deprecated':
+                return 'danger';
+            default:
+            return 'info';
+        }
+    }
+
     return (
         <>
             <div className="text-black p-4 mt-12 h-fit">
@@ -28,7 +48,7 @@ export default function Event() {
                         </select>
                     </div>
                 </div>
-                <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+                <div className="relative shadow-md">
                     <table className="w-full text-sm text-left rtl:text-right text-gray-500">
                         <thead className="text-xs text-white uppercase bg-green-primary">
                             <tr>
@@ -48,50 +68,37 @@ export default function Event() {
                                     Event End
                                 </th>
                                 <th scope="col" className="px-6 py-3">
-                                    Action
+
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
-                            {Array.from({ length: 10 }, (_, i) => (
+                            {event.map((events) => (
                                 <tr className="bg-white border-b border-gray-200">
                                     <th scope="row" className="px-6 py-2 font-medium text-gray-900 whitespace-nowrap">
-                                        Buwan ng Wika
+                                        {events.title}
                                     </th>
                                     <td className="px-6 py-2">
-                                        John Doe
+                                        {events.author}
                                     </td>
                                     <td className="px-6 py-2">
-                                        <SPIBadges theme="success" text="Released" />
+                                        <SPIBadges theme={setTheme(events.status)} text={events.status} />
                                     </td>
                                     <td className="px-6 py-2">
-                                        August 25, 2024
+                                        {formatDate(events.start)}
                                     </td>
                                     <td className="px-6 py-2">
-                                        August 25, 2025
+                                        {formatDate(events.end)}
                                     </td>
                                     <td className="px-6 py-2 flex gap-2">
-                                        <button type="button" className="p-1 flex items-center rounded-lg bg-orange-200 text-orange">
-                                            <span className="material-symbols-rounded" style={{ color: 'darkorange' }}>
-                                                stylus
-                                            </span>
-                                        </button>
-                                        <button type="button" className="p-1 cursor-pointer flex items-center rounded-lg bg-blue-200 text-orange">
-                                            <span className="material-symbols-rounded" style={{ color: 'blue' }}>
-                                                clarify
-                                            </span>
-                                        </button>
-                                        <button type="button" className="p-1 flex items-center rounded-lg bg-red-200 text-orange">
-                                            <span className="material-symbols-rounded" style={{ color: 'red' }}>
-                                                delete
-                                            </span>
-                                        </button>
+                                        <SPIDropdownMenu/>
                                     </td>
                                 </tr>
                             ))}
                         </tbody>
                     </table>
                 </div>
+                {event.length > 10 ?
                 <nav className="flex items-center flex-column flex-wrap md:flex-row justify-between pt-4" aria-label="Table navigation">
                     <span className="text-sm font-normal text-gray-500 mb-4 md:mb-0 block w-full md:inline md:w-auto">Showing <span className="font-semibold text-gray-900">1-10</span> of <span className="font-semibold text-gray-900">1000</span></span>
                     <ul className="inline-flex -space-x-px rtl:space-x-reverse text-sm h-8">
@@ -117,7 +124,7 @@ export default function Event() {
                             <a href="#" className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700">Next</a>
                         </li>
                     </ul>
-                </nav>
+                </nav>: ''}
             </div>
         </>
     )

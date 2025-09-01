@@ -6,12 +6,11 @@ use App\Models\Event;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
-class EventController extends Controller
+class UserController extends Controller
 {
     public function index()
     {
-        $event = Event::all();
-        return Inertia::render('Event', ['event' => $event]);
+        return Inertia::render('Dashboard/Event');
     }
 
     public function dashboard()
@@ -50,6 +49,6 @@ class EventController extends Controller
     public function show($id) {
         $event = Event::findOrFail($id);
         if ($event == null) return dd($event);
-        return Inertia::render('EventView', ['event' => $event]);
+        return Inertia::render('EventView', $event);
     }
 }

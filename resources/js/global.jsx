@@ -16,3 +16,14 @@ export function appendToast(containerId, theme, text) {
         container.removeChild(toastWrapper);
     }, 5000);
 }
+
+export default function formatDate(dateStr) {
+    if (!dateStr) return '';
+    const date = new Date(dateStr);
+    return date.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+    });
+
+}

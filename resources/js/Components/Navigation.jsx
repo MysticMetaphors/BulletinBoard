@@ -1,5 +1,6 @@
 import { Link } from "@inertiajs/react"
 import { route } from "ziggy-js"
+import logo from '../assets/SkillPowerInstituteLogo.png'
 
 export default function Navigation() {
     function openNav() {
@@ -11,7 +12,7 @@ export default function Navigation() {
             <nav className="bg-green-primary border-gray-200">
                 <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
                     <a href="#" className="flex items-center space-x-3 rtl:space-x-reverse">
-                        <img src="SkillPowerInstituteLogo.png" className="h-8" alt="SPI Logo" />
+                        <img src={logo} className="h-8" alt="SPI Logo" />
                         {/* <span className="self-center text-4xl font-bold text-white whitespace-nowrap">SPI</span> */}
                     </a>
                     <button onClick={openNav} data-collapse-toggle="navbar-default" type="button" className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-white rounded-lg md:hidden hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200" aria-controls="navbar-default" aria-expanded="false">

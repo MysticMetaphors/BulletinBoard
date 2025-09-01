@@ -10,12 +10,16 @@ class AnnouncementController extends Controller
 {
     public function index()
     {
-        return Inertia::render('Announcement');
+        $announcements = Announcement::all();
+        return Inertia::render('Announcement', ['anno' => $announcements]);
     }
 
     public function dashboard()
     {
-        return Inertia::render('Dashboard/Announcement');
+        $announcements = Announcement::all();
+        return Inertia::render('Dashboard/Announcement', [
+            'anno' => $announcements
+        ]);
     }
 
     public function create()
@@ -47,6 +51,6 @@ class AnnouncementController extends Controller
     public function show($id) {
         $announce = Announcement::findOrFail($id);
         if ($announce == null) return dd($announce);
-        return Inertia::render('AnnoView', $announce);
+        return Inertia::render('AnnoView', ['anno' => $announce]);
     }
 }
