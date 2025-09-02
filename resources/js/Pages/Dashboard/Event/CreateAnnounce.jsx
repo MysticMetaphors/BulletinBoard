@@ -1,17 +1,27 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { route } from "ziggy-js";
 import { router, usePage } from "@inertiajs/react";
 import DashboardLayout from "../../../Layouts/DashboardLayout";
 import { appendToast } from "../../../global";
 import RichTextEditor from "../../../Components/RichTextEditor";
+import RichTextDisplay from "../../../Components/RichTextDisplay";
 
 export default function CreateAnnounce() {
-    const { errors, flash } = usePage().props;
+    const { errors } = usePage().props;
+    const [content, setContent] = useState("");
     const [step, setStep] = useState(1)
     const [form, setForm] = useState({
         title: '',
         content: '',
     });
+
+    useEffect(() => {
+        setContent(content)
+    }, [])
+
+    useEffect(() => {
+        setForm({ ...form, content: content });
+    }, [content]);
 
     function handleChange(e) {
         setForm({ ...form, [e.target.name]: e.target.value });
@@ -53,7 +63,7 @@ export default function CreateAnnounce() {
 
     return (
         <>
-            <div className="text-black p-4 mt-12 h-fit overflow-y-auto overflow-visible">
+            <div className="text-black p-4 mt-12 h-full overflow-y-auto overflow-visible">
                 <ol className="items-center w-full space-y-4 sm:flex sm:space-x-8 sm:space-y-0 rtl:space-x-reverse mb-4">
                     <li
                         className={`flex items-center space-x-2.5 rtl:space-x-reverse ${step >= 1 ? 'text-green-primary' : 'text-gray-500'
@@ -97,8 +107,15 @@ export default function CreateAnnounce() {
                                 <label for="default-input" className="block mb-2 text-sm font-medium text-gray-900">Title</label>
                                 <input name="title" type="text" value={form.title} onChange={handleChange} placeholder="Your title" id="default-input" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />
                             </div>
-                            <label for="message" className="block mb-2 text-sm font-medium text-gray-900">Your message</label>
-                            <textarea name="content" id="message" value={form.content} onChange={handleChange} rows="4" className="mb-4 block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500" placeholder="Write your thoughts here..."></textarea>
+                            <label for="message" className="block mb-2 text-sm font-medium text-gray-900">Announcement content</label>
+                            {/* <textarea name="content" id="message" value={form.content} onChange={handleChange} rows="4" className="mb-4 block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500" placeholder="Write your thoughts here..."></textarea> */}
+                            <div id="richtext">
+                                <RichTextEditor
+                                    name="content"
+                                    value={content}
+                                    onChange={(newContent) => {setContent(newContent);}}
+                                />
+                            </div>
                             <button type="button" onClick={handleNext} className="text-green-primary cursor-pointer hover:text-white border border-green-primary hover:bg-green-primary font-medium rounded-lg text-sm px-5 py-[5px] text-center">
                                 Next
                             </button>
@@ -106,9 +123,9 @@ export default function CreateAnnounce() {
                         : step == 2 ? <div>
                             <div>
                                 <h1 className="text-5xl font-bold mb-4">{form.title}</h1>
-                                <p style={{ fontSize: 'larger' }} className="mb-4">
-                                    {form.content}
-                                </p>
+                                <div className="mb-4">
+                                    <RichTextDisplay content={form.content}/>
+                                </div>
                             </div>
                             <div className="flex gap-4">
                                 <button type="button" onClick={() => setStep(step - 1)} className="text-green-primary cursor-pointer hover:text-white border border-green-primary hover:bg-green-primary font-medium rounded-lg text-sm px-5 py-[5px] text-center">
@@ -120,8 +137,6 @@ export default function CreateAnnounce() {
                             </div>
                         </div> : ''}
                 </form>
-
-                <RichTextEditor />
 
                 {/* <div id="step-2">
                     <form className="lg:w-[50%]">
