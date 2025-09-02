@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\EventController;
-
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -14,8 +14,11 @@ Route::get('event/dashboard', [EventController::class, 'dashboard'])
     ->name('event.dashboard');
 
 Route::resource('announcement', AnnouncementController::class);
+Route::resource('user', UserController::class);
 Route::resource('event', EventController::class);
-
+Route::get('/history', function () {
+    return Inertia::render('Dashboard/History');
+})->name('history');
 
 Route::get('/testview', function () {
     return Inertia::render('AnnoView');

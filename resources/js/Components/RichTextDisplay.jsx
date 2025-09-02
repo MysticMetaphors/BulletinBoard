@@ -13,7 +13,7 @@ import Bold from 'https://esm.sh/@tiptap/extension-bold@2.6.6'
 import Blockquote from 'https://esm.sh/@tiptap/extension-blockquote@2.6.6'
 import { useEffect, useMemo } from 'react'
 
-export default function RichTextViewer({ content }) {
+export default function RichTextViewer({ content, title = 'No title' }) {
 
     const GreenBlockquote = Blockquote.extend({
         addAttributes() {
@@ -90,7 +90,7 @@ export default function RichTextViewer({ content }) {
             editable: false,
             element: document.querySelector('#wysiwyg-display'),
             extensions: extensions,
-            content: content,
+            content: `<blockquote class="fill-primary-green pl-4"><p><span style="font-size: 36px;">${title}</span></p></blockquote> ${content}`,
             editorProps: {
                 attributes: {
                     class: 'format text-black lg:format-lg focus:outline-none format-blue max-w-none',
@@ -100,7 +100,13 @@ export default function RichTextViewer({ content }) {
         if (!editor) return null
     }, [content]);
 
-    return (<><div id='wysiwyg-display'></div></>)
+    return (
+        <>
+            <div id='wysiwyg-display'>
+
+            </div>
+        </>
+    )
 }
 
 

@@ -113,7 +113,7 @@ export default function CreateAnnounce() {
                                 <RichTextEditor
                                     name="content"
                                     value={content}
-                                    onChange={(newContent) => {setContent(newContent);}}
+                                    onChange={(newContent) => { setContent(newContent); }}
                                 />
                             </div>
                             <button type="button" onClick={handleNext} className="text-green-primary cursor-pointer hover:text-white border border-green-primary hover:bg-green-primary font-medium rounded-lg text-sm px-5 py-[5px] text-center">
@@ -124,7 +124,7 @@ export default function CreateAnnounce() {
                             <div>
                                 <h1 className="text-5xl font-bold mb-4">{form.title}</h1>
                                 <div className="mb-4">
-                                    <RichTextDisplay content={form.content}/>
+                                    <RichTextViewer content={content} title={form.title} />
                                 </div>
                             </div>
                             <div className="flex gap-4">

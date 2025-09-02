@@ -47,12 +47,12 @@ export default function DashboardLayout({ children }) {
                 <div className="h-full px-3 pb-4 overflow-y-auto bg-white">
                     <ul className="space-y-2 ">
                         <li>
-                            <Link href={route('dashboard')} onClick={() => setActivePage(null)} className="flex items-center p-2 text-primaryGrey-1000 rounded-lg">
+                            {/* <Link href={route('dashboard')} onClick={() => setActivePage(null)} className="flex items-center p-2 text-primaryGrey-1000 rounded-lg">
                                 <span className="material-symbols-rounded shrink-0 w-5 h-5 text-green-primary transition duration-75">
                                     dashboard
                                 </span>
                                 <span className="ms-3">Dashboard</span>
-                            </Link>
+                            </Link> */}
                         </li>
                         <li>
                             <Link href={route('announcement.dashboard')} onClick={() => setActivePage("announcement")} className="flex items-center p-2 text-primaryGrey-1000 rounded-lg">
@@ -79,20 +79,20 @@ export default function DashboardLayout({ children }) {
                             </Link>
                         </li>
                         <li>
-                            <a href="#" onClick={() => setActivePage(null)} className="flex items-center p-2 text-primaryGrey-1000 rounded-lg">
+                            <Link href={route('history')} onClick={() => setActivePage("ssc")} className="flex items-center p-2 text-primaryGrey-1000 rounded-lg">
                                 <span className="material-symbols-rounded shrink-0 w-5 h-5 text-green-primary transition duration-75">
                                     history_2
                                 </span>
                                 <span className="flex-1 ms-3 whitespace-nowrap">History</span>
-                            </a>
+                            </Link>
                         </li>
                         <li>
-                            <a href="#" onClick={() => setActivePage(null)} className="flex items-center p-2 text-primaryGrey-1000 rounded-lg">
+                            <Link href={route('user.index')} onClick={() => setActivePage("ssc")} className="flex items-center p-2 text-primaryGrey-1000 rounded-lg">
                                 <span className="material-symbols-rounded shrink-0 w-5 h-5 text-green-primary transition duration-75">
                                     manage_accounts
                                 </span>
                                 <span className="ms-3">User</span>
-                            </a>
+                            </Link>
                         </li>
                         <li>
                             <a href="#" className="flex items-center p-2 text-primaryGrey-1000 rounded-lg">

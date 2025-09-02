@@ -1,6 +1,8 @@
 import { usePage } from "@inertiajs/react";
 import SPIBadges from "../../Components/SPIComps/SPIBadge";
 import DashboardLayout from "../../Layouts/DashboardLayout";
+import formatDate from "../../global";
+import SPIDropdownMenu from "../../Components/SPIComps/SPIDropdownMenu";
 
 export default function User() {
     // const { anno } = usePage().props;
@@ -46,93 +48,77 @@ export default function User() {
                         </select>
                     </div> */}
                 </div>
-                <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-                    <table className="w-full text-sm text-left rtl:text-right text-gray-500">
+                <div className="relative shadow-md">
+                    <table className="w-full text-sm text-left rtl:text-right text-gray-500 ">
                         <thead className="text-xs text-white uppercase bg-green-primary">
                             <tr>
                                 <th scope="col" className="px-6 py-3">
-                                    Title
+                                    Avatar
                                 </th>
                                 <th scope="col" className="px-6 py-3">
-                                    Author
+                                    Name
                                 </th>
                                 <th scope="col" className="px-6 py-3">
-                                    Status
+                                    Email
                                 </th>
                                 <th scope="col" className="px-6 py-3">
-                                    Date Created
+                                    Role
                                 </th>
                                 <th scope="col" className="px-6 py-3">
-                                    Action
+
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
-                            {/* {anno.map((annos) => ( */}
+                            {Array.from({ length: 10 }).map((_, index) => (
                                 <tr className="bg-white border-b border-gray-200">
                                     <th scope="row" className="px-6 py-2 font-medium text-gray-900 whitespace-nowrap">
-                                        {/* {annos.title} */}
+                                        <img src="SkillPowerInstituteLogo.png" className="h-10 w-10" alt="" />
+                                    </th>
+                                    <th scope="row" className="px-6 py-2 font-medium text-gray-900 whitespace-nowrap">
+                                        John Doe
                                     </th>
                                     <td className="px-6 py-2">
-                                        {/* {annos.author} */}
+                                        johndoe@gmail.com
                                     </td>
                                     <td className="px-6 py-2">
-                                        {/* <SPIBadges theme={setTheme(annos.status)} text={annos.status} /> */}
+                                        Sept 20, 2025
                                     </td>
-                                    <td className="px-6 py-2">
-                                        {/* {annos.title} */}
-                                    </td>
-                                    <td className="px-6 py-2 flex gap-2">
-                                        <button type="button" className="p-1 cursor-pointer flex items-center rounded-lg bg-orange-200 text-orange">
-                                            <span className="material-symbols-rounded" style={{ color: 'darkorange' }}>
-                                                stylus
-                                            </span>
-                                        </button>
-                                        <button type="button" className="p-1 cursor-pointer flex items-center rounded-lg bg-blue-200 text-orange">
-                                            <span className="material-symbols-rounded" style={{ color: 'blue' }}>
-                                                clarify
-                                            </span>
-                                        </button>
-                                        <button type="button" className="p-1 cursor-pointer flex items-center rounded-lg bg-red-200 text-orange">
-                                            <span className="material-symbols-rounded" style={{ color: 'red' }}>
-                                                delete
-                                            </span>
-                                        </button>
+                                    <td className="px-6 py-2 flex">
+                                        <SPIDropdownMenu />
                                     </td>
                                 </tr>
-                            {/* ))} */}
+                            ))}
                         </tbody>
                     </table>
                 </div>
-                {anno.length > 10 ?
-                    <nav className="flex items-center flex-column flex-wrap md:flex-row justify-between pt-4" aria-label="Table navigation">
-                        <span className="text-sm font-normal text-gray-500 mb-4 md:mb-0 block w-full md:inline md:w-auto">Showing <span className="font-semibold text-gray-900">1-10</span> of <span className="font-semibold text-gray-900">1000</span></span>
-                        <ul className="inline-flex -space-x-px rtl:space-x-reverse text-sm h-8">
-                            <li>
-                                <a href="#" className="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700">Previous</a>
-                            </li>
-                            <li>
-                                <a href="#" className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700">1</a>
-                            </li>
-                            <li>
-                                <a href="#" className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700">2</a>
-                            </li>
-                            <li>
-                                <a href="#" aria-current="page" className="flex items-center justify-center px-3 h-8 text-blue-600 border border-gray-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700">3</a>
-                            </li>
-                            <li>
-                                <a href="#" className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700">4</a>
-                            </li>
-                            <li>
-                                <a href="#" className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700">5</a>
-                            </li>
-                            <li>
-                                <a href="#" className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700">Next</a>
-                            </li>
-                        </ul>
-                    </nav>
-                    : ''
-                }
+
+                <nav className="flex items-center flex-column flex-wrap md:flex-row justify-between pt-4" aria-label="Table navigation">
+                    <span className="text-sm font-normal text-gray-500 mb-4 md:mb-0 block w-full md:inline md:w-auto">Showing <span className="font-semibold text-gray-900">1-10</span> of <span className="font-semibold text-gray-900">1000</span></span>
+                    <ul className="inline-flex -space-x-px rtl:space-x-reverse text-sm h-8">
+                        <li>
+                            <a href="#" className="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700">Previous</a>
+                        </li>
+                        <li>
+                            <a href="#" className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700">1</a>
+                        </li>
+                        <li>
+                            <a href="#" className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700">2</a>
+                        </li>
+                        <li>
+                            <a href="#" aria-current="page" className="flex items-center justify-center px-3 h-8 text-blue-600 border border-gray-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700">3</a>
+                        </li>
+                        <li>
+                            <a href="#" className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700">4</a>
+                        </li>
+                        <li>
+                            <a href="#" className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700">5</a>
+                        </li>
+                        <li>
+                            <a href="#" className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700">Next</a>
+                        </li>
+                    </ul>
+                </nav>
             </div>
         </>
     )
