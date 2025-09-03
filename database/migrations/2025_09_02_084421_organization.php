@@ -13,9 +13,12 @@ return new class extends Migration
     {
         Schema::create('organization', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('title');
             $table->string('description')->nullable();
             $table->string('advisor')->nullable();
+            $table->string('mission')->nullable();
+            $table->string('vision')->nullable();
+            $table->string('logo')->nullable();
             $table->timestamps();
         });
 
@@ -23,7 +26,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('organization_id')->constrained('organization')->onDelete('cascade');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->enum('role', ['Member', 'President', 'Vice President', 'Secretary', 'Treasurer'])->default('Member');
             $table->timestamps();
         });
     }

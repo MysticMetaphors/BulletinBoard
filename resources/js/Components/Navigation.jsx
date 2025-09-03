@@ -32,9 +32,12 @@ export default function Navigation() {
                             <li>
                                 <Link href={route('event.index')} className="block py-2 px-3 text-white rounded-sm md:border-0 md:p-0">Event</Link>
                             </li>
+                            <li>
+                                <Link href={route('event.index')} className="block py-2 px-3 text-white rounded-sm md:border-0 md:p-0">Organizations</Link>
+                            </li>
                             <li className="flex gap-2">
                                 <Link href={route('login')} className="block py-2 px-3 text-white border border-white rounded-sm px-3 md:py-0">Login</Link>
-                                <Link href={route('register')} className="block py-2 px-3 text-white border border-white rounded-sm px-3 md:py-0">Sign up</Link>
+                                {/* <Link href={route('register')} className="block py-2 px-3 text-white border border-white rounded-sm px-3 md:py-0">Sign up</Link> */}
                             </li>
                         </ul>
                     </div>

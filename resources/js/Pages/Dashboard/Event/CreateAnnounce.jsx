@@ -28,7 +28,7 @@ export default function CreateAnnounce() {
     };
 
     function handleNext() {
-        if (form.title.length > 50) {
+        if (form.title.length > 100) {
             appendToast('toast-append', 'error', 'Title cannot exceed 50 characters.')
             return
         }
@@ -49,6 +49,7 @@ export default function CreateAnnounce() {
                         title: '',
                         content: '',
                     });
+                    setContent("");
                     setStep(1);
                     appendToast('toast-append', 'success', 'Successfully Added');
                 }
@@ -91,7 +92,7 @@ export default function CreateAnnounce() {
                             2
                         </span>
                         <span>
-                            <h3 className="font-medium leading-tight">Confirm</h3>
+                            <h3 className="font-medium leading-tight">Preview</h3>
                             <p className="text-sm">Announcement preview</p>
                         </span>
                     </li>
@@ -107,7 +108,7 @@ export default function CreateAnnounce() {
                                 <label for="default-input" className="block mb-2 text-sm font-medium text-gray-900">Title</label>
                                 <input name="title" type="text" value={form.title} onChange={handleChange} placeholder="Your title" id="default-input" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />
                             </div>
-                            <label for="message" className="block mb-2 text-sm font-medium text-gray-900">Announcement content</label>
+                            <label className="block mb-2 text-sm font-medium text-gray-900">Announcement content</label>
                             {/* <textarea name="content" id="message" value={form.content} onChange={handleChange} rows="4" className="mb-4 block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500" placeholder="Write your thoughts here..."></textarea> */}
                             <div id="richtext">
                                 <RichTextEditor
@@ -122,9 +123,8 @@ export default function CreateAnnounce() {
                         </div>
                         : step == 2 ? <div>
                             <div>
-                                <h1 className="text-5xl font-bold mb-4">{form.title}</h1>
                                 <div className="mb-4">
-                                    <RichTextViewer content={content} title={form.title} />
+                                    <RichTextDisplay content={content} title={form.title} />
                                 </div>
                             </div>
                             <div className="flex gap-4">

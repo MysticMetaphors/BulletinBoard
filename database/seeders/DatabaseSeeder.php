@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             AnnouncementSeeder::class,
             EventSeeder::class,
+            OrganizationSeeder::class
         ]);
     }
 }

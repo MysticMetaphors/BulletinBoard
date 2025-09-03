@@ -14,7 +14,7 @@ export default function AnnoView() {
                     {anno.title}
                 </h1> */}
                 <div className="text-2xl text-justify">
-                    <RichTextViewer content={anno.content}/>
+                    <RichTextViewer content={anno.content} title={anno.title}/>
                 </div>
             </div>
         </>

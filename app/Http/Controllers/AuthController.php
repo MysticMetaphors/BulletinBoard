@@ -2,21 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Event;
-use Illuminate\Http\Request;
 use Inertia\Inertia;
 
-class EventController extends Controller
+class AuthController extends Controller
 {
     public function login()
     {
         return Inertia::render('Auth/Login');
     }
 
-    public function register()
-    {
-        return Inertia::render('Auth/Register');
-    }
+    // public function register()
+    // {
+    //     return Inertia::render('Auth/Register');
+    // }
 
     // public function authenticate() {
 

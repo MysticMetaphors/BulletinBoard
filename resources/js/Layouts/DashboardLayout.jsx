@@ -33,8 +33,9 @@ export default function DashboardLayout({ children }) {
                         </div>
                         <div className="flex items-center">
                             {activePage == "announcement" ? <SPIButton text="New Announcement" link_to={'announcement.create'} theme={'secondary'} />
-                                : activePage == "event" ? <SPIButton text="New Event" link_to={'event.create'} theme={'secondary'} /> : ''}
-
+                            : activePage == "event" ? <SPIButton text="New Event" link_to={'event.create'} theme={'secondary'} /> :
+                            activePage == "org" ? <SPIButton text="New Organization" link_to={'org.create'} theme={'secondary'} /> :
+                            activePage == "user" ? <SPIButton text="New User" link_to={'event.create'} theme={'secondary'} /> : '' }
                             <div className="flex items-center ms-3">
                                 <ProfileDropdown />
                             </div>
@@ -71,7 +72,7 @@ export default function DashboardLayout({ children }) {
                             </Link>
                         </li>
                         <li>
-                            <Link href={route('ssc')} onClick={() => setActivePage("ssc")} className="flex items-center p-2 text-primaryGrey-1000 rounded-lg">
+                            <Link href={route('org.index')} onClick={() => setActivePage("org")} className="flex items-center p-2 text-primaryGrey-1000 rounded-lg">
                                 <span className="material-symbols-rounded shrink-0 w-5 h-5 text-green-primary transition duration-75">
                                     group_work
                                 </span>
@@ -79,7 +80,7 @@ export default function DashboardLayout({ children }) {
                             </Link>
                         </li>
                         <li>
-                            <Link href={route('history')} onClick={() => setActivePage("ssc")} className="flex items-center p-2 text-primaryGrey-1000 rounded-lg">
+                            <Link href={route('history')} onClick={() => setActivePage(null)} className="flex items-center p-2 text-primaryGrey-1000 rounded-lg">
                                 <span className="material-symbols-rounded shrink-0 w-5 h-5 text-green-primary transition duration-75">
                                     history_2
                                 </span>
@@ -87,7 +88,7 @@ export default function DashboardLayout({ children }) {
                             </Link>
                         </li>
                         <li>
-                            <Link href={route('user.index')} onClick={() => setActivePage("ssc")} className="flex items-center p-2 text-primaryGrey-1000 rounded-lg">
+                            <Link href={route('user.index')} onClick={() => setActivePage("user")} className="flex items-center p-2 text-primaryGrey-1000 rounded-lg">
                                 <span className="material-symbols-rounded shrink-0 w-5 h-5 text-green-primary transition duration-75">
                                     manage_accounts
                                 </span>

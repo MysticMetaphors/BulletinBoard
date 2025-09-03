@@ -70,9 +70,9 @@ export default function Login() {
                                 Sign in with Google
                             </button>
                         </div>
-                        <p className="text-sm font-light text-white">
+                        {/* <p className="text-sm font-light text-white">
                             Don’t have an account yet? <Link href={route('register')} className="font-medium text-white hover:underline">Create an account</Link>
-                        </p>
+                        </p> */}
                         <Link href={route('home')} className='absolute top-5 right-10 text-white font-semibold flex gap-2 items-center'>
                             <span className="material-symbols-rounded shrink-0 w-5 h-5 text-white transition duration-75">
                                 arrow_left_alt

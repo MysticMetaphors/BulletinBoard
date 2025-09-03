@@ -31,7 +31,7 @@ class AnnouncementController extends Controller
     {
         try {
             $validatedData = $request->validate([
-                'title' => 'required|string|max:50',
+                'title' => 'required|string|max:100',
                 'content' => 'required|string',
             ]);
         } catch (\Illuminate\Validation\ValidationException $e) {

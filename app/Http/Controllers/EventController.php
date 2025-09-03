@@ -18,7 +18,8 @@ class EventController extends Controller
     {
         $events = Event::all();
         return Inertia::render('Dashboard/Event', [
-            'event' => $events]);
+            'event' => $events
+        ]);
     }
 
     public function create()
@@ -32,6 +33,9 @@ class EventController extends Controller
             $validatedData = $request->validate([
                 'title' => 'required|string|max:50',
                 'content' => 'required|string',
+                'start' => 'required|date',
+                'time' => 'required|date_format:H:i',
+                'location' => 'required|string',
             ]);
         } catch (\Illuminate\Validation\ValidationException $e) {
             return Inertia::render('Dashboard/Event/CreateEvent', [
@@ -47,7 +51,8 @@ class EventController extends Controller
         ]);
     }
 
-    public function show($id) {
+    public function show($id)
+    {
         $event = Event::findOrFail($id);
         if ($event == null) return dd($event);
         return Inertia::render('EventView', ['event' => $event]);
