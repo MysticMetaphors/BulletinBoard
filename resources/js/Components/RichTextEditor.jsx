@@ -4,14 +4,16 @@ import Highlight from 'https://esm.sh/@tiptap/extension-highlight@2.6.6';
 import Underline from 'https://esm.sh/@tiptap/extension-underline@2.6.6';
 import Link from 'https://esm.sh/@tiptap/extension-link@2.6.6';
 import TextAlign from 'https://esm.sh/@tiptap/extension-text-align@2.6.6';
-// import Image from 'https://esm.sh/@tiptap/extension-image@2.6.6';
+import Image from 'https://esm.sh/@tiptap/extension-image@2.6.6';
 // import YouTube from 'https://esm.sh/@tiptap/extension-youtube@2.6.6';
 import TextStyle from 'https://esm.sh/@tiptap/extension-text-style@2.6.6';
 import FontFamily from 'https://esm.sh/@tiptap/extension-font-family@2.6.6';
 import { Color } from 'https://esm.sh/@tiptap/extension-color@2.6.6';
 import Bold from 'https://esm.sh/@tiptap/extension-bold@2.6.6';
 import Blockquote from 'https://esm.sh/@tiptap/extension-blockquote@2.6.6';
-import {  useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
+import { router } from '@inertiajs/react'
+import { route } from 'ziggy-js';
 
 export default function RichTextEditor({ value = "", onChange, name = "content" }) {
 
@@ -85,7 +87,7 @@ export default function RichTextEditor({ value = "", onChange, name = "content" 
         TextAlign.configure({
             types: ['heading', 'paragraph'],
         }),
-        // Image,
+        Image,
         // YouTube,
     ], []);
 
@@ -153,19 +155,42 @@ export default function RichTextEditor({ value = "", onChange, name = "content" 
                 document.getElementById('toggleHRButton').addEventListener('click', () => {
                     editor.chain().focus().setHorizontalRule().run();
                 });
-                // document.getElementById('addImageButton').addEventListener('click', () => {
-                //     const url = window.prompt('Enter image URL:', 'https://placehold.co/600x400');
-                //     if (url) {
-                //         editor.chain().focus().setImage({ src: url }).run();
-                //     }
-                // });
+
+                document.getElementById('addImageButton').addEventListener('click', () => {
+                    const input = document.createElement('input');
+                    input.type = 'file';
+                    input.accept = 'image/*';
+                    input.click();
+
+                    input.onchange = (e) => {
+                        const file = e.target.files[0];
+                        if (!file) return;
+                        console.log('Selected image name:', file.name);
+                        //     const formData = new FormData();
+                        //     formData.append('image', file);
+
+                        //     router.post(route('upload.temp.image'), formData, {
+                        //         onSuccess: (page) => {
+                        //             const url = page.props.url;
+                        //             if (url) {
+                        //                 editor.chain().focus().setImage({ src: url }).run();
+                        //             }
+                        //         },
+                        //         onError: (errors) => {
+                        //             console.error(errors);
+                        //             alert('Image upload failed.');
+                        //         }
+                        //     });
+                    };
+                });
+
                 // document.getElementById('addVideoButton').addEventListener('click', () => {
                 //     const url = window.prompt('Enter YouTube URL:', 'https://www.youtube.com/watch?v=KaLxCiilHns');
                 //     if (url) {
                 //         editor.commands.setYoutubeVideo({
                 //             src: url,
-                //             // width: 640,
-                //             // height: 480,
+                //             width: 640,
+                //             height: 480,
                 //         })
                 //     }
                 // });
@@ -641,7 +666,7 @@ export default function RichTextEditor({ value = "", onChange, name = "content" 
                             Add image
                             <div className="tooltip-arrow" data-popper-arrow></div>
                         </div>
-                        <button id="addVideoButton" type="button" data-tooltip-target="tooltip-video" className="p-1.5 text-white rounded-sm cursor-pointer hover:text-gray-900 hover:bg-gray-100 ">
+                        {/* <button id="addVideoButton" type="button" data-tooltip-target="tooltip-video" className="p-1.5 text-white rounded-sm cursor-pointer hover:text-gray-900 hover:bg-gray-100 ">
                             <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
                                 <path fill-rule="evenodd" d="M9 7V2.221a2 2 0 0 0-.5.365L4.586 6.5a2 2 0 0 0-.365.5H9Zm2 0V2h7a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V9h5a2 2 0 0 0 2-2Zm-2 4a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2H9Zm0 2h2v2H9v-2Zm7.965-.557a1 1 0 0 0-1.692-.72l-1.268 1.218a1 1 0 0 0-.308.721v.733a1 1 0 0 0 .37.776l1.267 1.032a1 1 0 0 0 1.631-.776v-2.984Z" clip-rule="evenodd" />
                             </svg>
@@ -650,7 +675,7 @@ export default function RichTextEditor({ value = "", onChange, name = "content" 
                         <div id="tooltip-video" role="tooltip" className="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-xs opacity-0 tooltip ">
                             Add video
                             <div className="tooltip-arrow" data-popper-arrow></div>
-                        </div>
+                        </div> */}
                         <button id="toggleListButton" type="button" data-tooltip-target="tooltip-list" className="p-1.5 text-white rounded-sm cursor-pointer hover:text-gray-900 hover:bg-gray-100 ">
                             <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M9 8h10M9 12h10M9 16h10M4.99 8H5m-.02 4h.01m0 4H5" />

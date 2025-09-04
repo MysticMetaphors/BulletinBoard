@@ -85,7 +85,7 @@ export default function Announcement() {
                                         {formatDate(annos.created_at)}
                                     </td>
                                     <td className="px-6 py-2 flex">
-                                        <SPIDropdownMenu/>
+                                        <SPIDropdownMenu view={['announcement.show', annos.id]}/>
                                     </td>
                                 </tr>
                             ))}

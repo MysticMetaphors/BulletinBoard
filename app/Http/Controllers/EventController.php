@@ -29,6 +29,7 @@ class EventController extends Controller
 
     public function store(Request $request)
     {
+        dd($request->all());
         try {
             $validatedData = $request->validate([
                 'title' => 'required|string|max:50',

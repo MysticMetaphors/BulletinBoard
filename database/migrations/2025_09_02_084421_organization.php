@@ -25,7 +25,12 @@ return new class extends Migration
         Schema::create('organization_member', function (Blueprint $table) {
             $table->id();
             $table->foreignId('organization_id')->constrained('organization')->onDelete('cascade');
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->string('name');
+            $table->string('role')->default('member');
+            $table->string('contact')->nullable();
+            $table->string('avatar');
+            $table->string('bio')->nullable();
+            $table->string('experience')->nullable();
             $table->timestamps();
         });
     }

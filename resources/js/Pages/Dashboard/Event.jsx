@@ -62,10 +62,10 @@ export default function Event() {
                                     Status
                                 </th>
                                 <th scope="col" className="px-6 py-3">
-                                    Event Start
+                                    Start
                                 </th>
                                 <th scope="col" className="px-6 py-3">
-                                    Event End
+                                    Time
                                 </th>
                                 <th scope="col" className="px-6 py-3">
 
@@ -88,10 +88,10 @@ export default function Event() {
                                         {formatDate(events.start)}
                                     </td>
                                     <td className="px-6 py-2">
-                                        {formatDate(events.end)}
+                                        {events.time}
                                     </td>
                                     <td className="px-6 py-2 flex gap-2">
-                                        <SPIDropdownMenu/>
+                                        <SPIDropdownMenu view={['event.show', events.id]}/>
                                     </td>
                                 </tr>
                             ))}

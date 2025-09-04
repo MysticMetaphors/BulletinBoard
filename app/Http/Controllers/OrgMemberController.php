@@ -6,13 +6,13 @@ use App\Models\Organization;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
-class OrgController extends Controller
+class OrgMemberController extends Controller
 {
-    public function index()
-    {
-        $organization = Organization::all();
-        return Inertia::render('Dashboard/Organization', ['orgs' => $organization]);
-    }
+    // public function index()
+    // {
+    //     $organization = Organization::all();
+    //     return Inertia::render('Dashboard/Organization', ['orgs' => $organization]);
+    // }
 
     // public function dashboard()
     // {
@@ -20,24 +20,29 @@ class OrgController extends Controller
     //     return Inertia::render('Dashboard/Organization', ['orgs' => $organization]);
     // }
 
-    public function create()
+    public function create(Request $request)
     {
-        return Inertia::render('Dashboard/Event/CreateOrg');
+        $orgId = $request->query('id');
+        $organization = Organization::findOrFail($orgId);
+        $title = $organization->title;
+        return Inertia::render('Dashboard/Event/CreateOrgMember', ['id' => $orgId, 'title' => $title]);
     }
 
     public function store(Request $request)
     {
+        dd($request->all());
         try {
             $validatedData = $request->validate([
-                'title' => 'required|string|max:100',
-                'description' => 'required|string',
-                'advisor' => 'required|string|max:100',
-                'mission' => 'required|string',
-                'vision' => 'required|string',
-                'logo' => 'required|image|max:2048',
+                'name' => 'required|string|max:100',
+                'organization_id' => 'required|string',
+                'role' => 'required|string|max:100',
+                'contact' => 'required|string',
+                'avatar' => 'required|image|max:2048',
+                'bio' => 'required|string',
+                'experience' => 'required|string',
             ]);
         } catch (\Illuminate\Validation\ValidationException $e) {
-            return Inertia::render('Dashboard/Event/CreateOrg', [
+            return Inertia::render('Dashboard/Event/CreateOrgMember', [
                 'errors' => $e->errors(),
             ]);
         }
@@ -48,7 +53,7 @@ class OrgController extends Controller
 
         $validatedData['logo'] = $fileName;
         Organization::create($validatedData);
-        return Inertia::render('Dashboard/Event/CreateOrg', [
+        return Inertia::render('Dashboard/Event/CreateOrgMember', [
             'flash' => ['success' => true],
         ]);
     }

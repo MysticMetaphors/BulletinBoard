@@ -8,9 +8,9 @@ export default function EventView() {
     return (
         <>
             <div className="w-full h-full pt-10 px-16 sm:px-24 lg:px-100">
-                <p className="text-2xl text-justify">
-                    <RichTextViewer content={event.content}/>
-                </p>
+                <div className="text-2xl text-justify">
+                    <RichTextViewer content={event.content} title={event.title}/>
+                </div>
             </div>
         </>
     )

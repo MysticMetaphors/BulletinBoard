@@ -1,7 +1,8 @@
 import SPIButton from "../../Components/SPIComps/SPIButton"
 import DashboardLayout from "../../Layouts/DashboardLayout"
 import SPIDropdownMenu from "../../Components/SPIComps/SPIDropdownMenu"
-import { usePage } from "@inertiajs/react";
+import { Link, usePage } from "@inertiajs/react";
+import { route } from "ziggy-js";
 
 export default function Organization() {
     const { orgs } = usePage().props
@@ -20,7 +21,9 @@ export default function Organization() {
                             <h5 className="mb-1 text-xl font-medium text-gray-900">{org.title}</h5>
                             <span className="text-sm text-gray-500">{org.advisor}</span>
                             <div className="flex gap-1 mt-4 md:mt-6">
-                                <SPIButton text="Manage Officers" />
+                                <Link href={route('org.show', org.id)}>
+                                    <SPIButton text="Manage Officers" />
+                                </Link>
                             </div>
                         </div>
                     </div>

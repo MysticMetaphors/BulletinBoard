@@ -140,6 +140,12 @@ export default function CreateOrg() {
                                 type="file"
                             />
                         </div>
+
+                        <div class="flex items-center mb-6">
+                            <input id="disabled-checked-checkbox" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 focus:ring-2" />
+                            <label for="disabled-checked-checkbox" class="ms-2 text-sm font-medium text-gray-400 dark:text-gray-500">Vision & Mission?</label>
+                        </div>
+
                         <button type="button" onClick={handleNext} className="text-green-primary cursor-pointer hover:text-white border border-green-primary hover:bg-green-primary font-medium rounded-lg text-sm px-5 py-[5px] text-center">
                             Next
                         </button>
