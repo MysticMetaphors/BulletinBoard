@@ -1,4 +1,4 @@
-import { Link } from '@inertiajs/react';
+import { Link, router } from '@inertiajs/react';
 import React, { useState } from 'react';
 import { route } from 'ziggy-js';
 import { appendToast } from '../../global';
@@ -12,14 +12,32 @@ export default function Login() {
 
     function handleChange(e) {
         setForm({ ...form, [e.target.name]: e.target.value });
+        console.log(form);
     };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        appendToast('toast-append', 'success', 'Logged successfully!')
-        appendToast('toast-append', 'warning', 'Fill in all fields')
-        appendToast('toast-append', 'error', 'Invalid cridentials.')
-    };
+    function handleSubmit(e) {
+        e.preventDefault()
+        router.post(route('auth.login'), form, {
+            onSuccess: (page) => {
+                const success = page.props.flash?.success;
+                if (success) {
+                    setForm({
+                        email: '',
+                        password: '',
+                        remember: false
+                    });
+                    setContent("")
+                    setStep(1);
+                    appendToast('toast-append', 'success', 'Successfully Added');
+                }
+            },
+            onError: (page) => {
+                Object.keys(page).forEach((field) => {
+                    appendToast('toast-append', 'error', errors[field][0]);
+                });
+            },
+        });
+    }
 
     return (
         <section className="bg-green-primary flex flex-row">
@@ -33,20 +51,20 @@ export default function Login() {
                         <div className='space-y-4'>
                             <div className='w-full '>
                                 <label htmlFor="email" className="block mb-2 text-sm font-medium text-white">Your email</label>
-                                <input type="email" name="email" value={form.email} onChange={handleChange} id="email" className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-white focus:border-white block w-full p-2.5" placeholder="example@gmail.com"  />
+                                <input type="email" name="email" value={form.email} onChange={handleChange} id="email" className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-white focus:border-white block w-full p-2.5" placeholder="example@gmail.com" />
                             </div>
                             <div className='w-full '>
                                 <label htmlFor="password" className="block mb-2 text-sm font-medium text-white">Password</label>
-                                <input type="password" name="password" value={form.password} onChange={handleChange} id="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-white focus:border-white block w-full p-2.5"  />
+                                <input type="password" name="password" value={form.password} onChange={handleChange} id="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-white focus:border-white block w-full p-2.5" />
                             </div>
                         </div>
                         <button type="submit" className="w-full text-black bg-white hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
                             Sign in
                         </button>
-                        <div className="flex items-center mb-0 justify-between">
+                        <div className="flex items-center mb-0 justify-between hidden">
                             <div className="flex items-start">
                                 <div className="flex items-center h-5">
-                                    <input id="remember" name='remember' value={form.remember} onChange={handleChange} aria-describedby="remember" type="checkbox" className="w-4 h-4 border border-gray-300 rounded bg-gray-50"  />
+                                    <input id="remember" name='remember' checked={form.remember} onChange={e => setForm({ ...form, remember: e.target.checked })} type="checkbox" className="w-4 h-4 border border-gray-300 rounded bg-gray-50" />
                                 </div>
                                 <div className="ml-3 text-sm">
                                     <label htmlFor="remember" className="text-white">Remember me</label>

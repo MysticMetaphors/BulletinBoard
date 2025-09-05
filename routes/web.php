@@ -10,12 +10,12 @@ use Inertia\Inertia;
 
 Route::get('/', [AnnouncementController::class, 'index'])->name('home');
 
-Route::get('announcement/dashboard', [AnnouncementController::class, 'dashboard'])
-    ->name('announcement.dashboard');
-Route::get('event/dashboard', [EventController::class, 'dashboard'])
-    ->name('event.dashboard');
-// Route::get('org/dashboard', [OrgController::class, 'org'])
-//     ->name('org.dashboard');
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('announcement/dashboard', [AnnouncementController::class, 'dashboard'])
+        ->name('announcement.dashboard');
+    Route::get('event/dashboard', [EventController::class, 'dashboard'])
+        ->name('event.dashboard');
+});
 
 Route::resource('announcement', AnnouncementController::class);
 Route::resource('user', UserController::class);
@@ -27,20 +27,5 @@ Route::get('/history', function () {
     return Inertia::render('Dashboard/History');
 })->name('history');
 
-// Route::get('/dashboard', function(){
-//     return Inertia::render('Dashboard/Dashboard');
-// })->name('dashboard');
-
-Route::get('/announce', function(){
-    return Inertia::render('Dashboard/Announcement');
-})->name('announce');
-
-Route::get('/createEvent', function(){
-    return Inertia::render('Dashboard/Event/CreateEvent');
-})->name('createEvent');
-
 // Route::post('/upload-temp-image', [RichTextController::class, 'uploadTemp'])
 //     ->name('upload.temp.image');
-
-
-

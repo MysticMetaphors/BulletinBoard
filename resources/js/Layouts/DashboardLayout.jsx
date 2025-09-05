@@ -1,4 +1,4 @@
-import { Link } from "@inertiajs/react";
+import { Link, router } from "@inertiajs/react";
 import { useState } from "react";
 import SPIButton from "../Components/SPIComps/SPIButton";
 import ProfileDropdown from "../Components/ProfileDropdown";
@@ -14,6 +14,16 @@ export default function DashboardLayout({ children }) {
         nav.classList.toggle('-translate-x-full')
     }
 
+    function toggleModal() {
+        const modal = document.getElementById('logout-modal')
+        modal.classList.toggle('hidden')
+        modal.classList.toggle('flex')
+    }
+
+    function handleLogout() {
+        router.post(route('auth.logout'));
+    }
+
     return (
         <>
             <nav className="fixed top-0 z-50 w-full bg-green-primary border-b border-gray-200">
@@ -23,7 +33,7 @@ export default function DashboardLayout({ children }) {
                             <button onClick={openNav} type="button" className="inline-flex items-center p-2 text-sm text-white rounded-lg sm:hidden hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200">
                                 <span className="sr-only">Open sidebar</span>
                                 <svg className="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                    <path clip-rule="evenodd" fill-rule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"></path>
+                                    <path clipRule="evenodd" fillRule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"></path>
                                 </svg>
                             </button>
                             <Link href={route('home')} className="flex ms-2 md:me-24">
@@ -33,9 +43,9 @@ export default function DashboardLayout({ children }) {
                         </div>
                         <div className="flex items-center">
                             {activePage == "announcement" ? <SPIButton text="New Announcement" link_to={'announcement.create'} theme={'secondary'} />
-                            : activePage == "event" ? <SPIButton text="New Event" link_to={'event.create'} theme={'secondary'} /> :
-                            activePage == "org" ? <SPIButton text="New Organization" link_to={'org.create'} theme={'secondary'} /> :
-                            activePage == "user" ? <SPIButton text="New User" link_to={'event.create'} theme={'secondary'} /> : '' }
+                                : activePage == "event" ? <SPIButton text="New Event" link_to={'event.create'} theme={'secondary'} /> :
+                                    activePage == "org" ? <SPIButton text="New Organization" link_to={'org.create'} theme={'secondary'} /> :
+                                        activePage == "user" ? <SPIButton text="New User" link_to={'event.create'} theme={'secondary'} /> : ''}
                             <div className="flex items-center ms-3">
                                 <ProfileDropdown />
                             </div>
@@ -96,7 +106,7 @@ export default function DashboardLayout({ children }) {
                             </Link>
                         </li>
                         <li>
-                            <a href="#" className="flex items-center p-2 text-primaryGrey-1000 rounded-lg">
+                            <a href="#" className="flex items-center p-2 text-primaryGrey-1000 rounded-lg" onClick={toggleModal}>
                                 <span className="material-symbols-rounded shrink-0 w-5 h-5 text-green-primary transition duration-75">
                                     logout
                                 </span>
@@ -106,6 +116,30 @@ export default function DashboardLayout({ children }) {
                     </ul>
                 </div>
             </aside>
+
+            <div id="logout-modal" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                <div class="relative p-4 w-full max-w-md max-h-full">
+                    <div class="relative bg-green-primary rounded-lg shadow-sm ">
+                        <button onClick={toggleModal} type="button" class="absolute top-3 end-2.5 text-white bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center">
+                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                            </svg>
+                            <span class="sr-only">Close modal</span>
+                        </button>
+                        <div class="p-4 md:p-5 text-center">
+                            <svg class="mx-auto mb-4 text-white w-12 h-12" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                            </svg>
+                            <h3 class="mb-5 text-lg font-normal text-white">Are you sure you want to Logout?</h3>
+                            <button type="button" onClick={handleLogout} class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center">
+                                Yes, I'm sure
+                            </button>
+                            <button type="button" onClick={toggleModal} class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100">No, cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
 
             <div className="p-4 h-screen sm:ml-64">
                 {children}

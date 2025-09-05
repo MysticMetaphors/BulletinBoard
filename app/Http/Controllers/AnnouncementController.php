@@ -4,10 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Models\Announcement;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 class AnnouncementController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth', 'admin'])->except(['index', 'show']);
+    }
+
     public function index()
     {
         $announcements = Announcement::all();
@@ -18,7 +24,8 @@ class AnnouncementController extends Controller
     {
         $announcements = Announcement::all();
         return Inertia::render('Dashboard/Announcement', [
-            'anno' => $announcements
+            'anno' => $announcements,
+            'user' => Auth::user()
         ]);
     }
 

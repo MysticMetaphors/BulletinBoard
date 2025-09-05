@@ -5,8 +5,10 @@ import SPIDropdownMenu from "../../Components/SPIComps/SPIDropdownMenu";
 import formatDate from "../../global";
 
 export default function Announcement() {
-    const { anno } = usePage().props;
+    const { anno, user} = usePage().props;
 
+    console.log(user);
+    console.log(anno);
     function setTheme(status) {
         switch (status) {
             case 'Released':
