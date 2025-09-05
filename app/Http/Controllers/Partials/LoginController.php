@@ -18,10 +18,16 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-        $credentials = $request->validate([
-            'email' => 'required|email',
-            'password' => 'required|min:8',
-        ]);
+        try {
+            $credentials = $request->validate([
+                'email' => 'required|email',
+                'password' => 'required|min:8',
+            ]);
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return Inertia::render('Auth/Login', [
+                'errors' => $e->errors(),
+            ]);
+        }
 
         if (Auth::attempt($credentials, $request->boolean('remember'))) {
             $request->session()->regenerate();
@@ -31,9 +37,9 @@ class LoginController extends Controller
             return redirect()->route('announcement.index');
         }
 
-        return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
-        ])->onlyInput('email');
+        return Inertia::render('Auth/Login', [
+            'errors' => [0 => 'The provided credentials do not match our records.'],
+        ]);
     }
 
     public function logout(Request $request)

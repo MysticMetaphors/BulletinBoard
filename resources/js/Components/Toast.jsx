@@ -30,7 +30,7 @@ export default function Toast({ theme, text }) {
     return (
         <>
             <div className="animate-show-up space-y-3">
-                <div className="max-w-xs bg-white border border-gray-200 rounded-xl shadow-lg" role="alert" tabindex="-1" aria-labelledby="hs-toast-stack-toggle-update-label">
+                <div className="max-w-xs z-999 bg-white border border-gray-200 rounded-xl shadow-lg" role="alert" tabindex="-1" aria-labelledby="hs-toast-stack-toggle-update-label">
                     <div className="flex p-4">
                         <div className="shrink-0">
                             <span

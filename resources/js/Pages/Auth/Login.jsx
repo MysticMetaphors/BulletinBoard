@@ -1,9 +1,10 @@
-import { Link, router } from '@inertiajs/react';
+import { Link, router, usePage } from '@inertiajs/react';
 import React, { useState } from 'react';
 import { route } from 'ziggy-js';
 import { appendToast } from '../../global';
 
 export default function Login() {
+    const { errors } = usePage().props;
     const [form, setForm] = useState({
         email: '',
         password: '',
@@ -12,7 +13,6 @@ export default function Login() {
 
     function handleChange(e) {
         setForm({ ...form, [e.target.name]: e.target.value });
-        console.log(form);
     };
 
     function handleSubmit(e) {
@@ -28,12 +28,12 @@ export default function Login() {
                     });
                     setContent("")
                     setStep(1);
-                    appendToast('toast-append', 'success', 'Successfully Added');
+                    appendToast('toast-append', 'success', 'Successfully Logged In!');
                 }
             },
             onError: (page) => {
                 Object.keys(page).forEach((field) => {
-                    appendToast('toast-append', 'error', errors[field][0]);
+                    appendToast('toast-append', 'error', errors[field]);
                 });
             },
         });
@@ -41,7 +41,7 @@ export default function Login() {
 
     return (
         <section className="bg-green-primary flex flex-row">
-            <div className="z-999 w-fit h-screen flex  bg-green-primary rounded-lg md:mt-0 xl:p-0 relative">
+            <div className="w-fit h-screen flex  bg-green-primary rounded-lg md:mt-0 xl:p-0 relative">
                 <div className="w-fit p-6 space-y-4 md:space-y-6 sm:p-16 min-w-lg">
                     <img src="SkillPowerInstituteLogo.png" className='h-14 w-14 self-center' alt="" />
                     <h1 className="text-xl font-bold leading-tight tracking-tight text-white md:text-2xl">

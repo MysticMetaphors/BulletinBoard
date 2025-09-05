@@ -15,6 +15,10 @@ Route::middleware(['auth', 'admin'])->group(function () {
         ->name('announcement.dashboard');
     Route::get('event/dashboard', [EventController::class, 'dashboard'])
         ->name('event.dashboard');
+
+    Route::get('/history', function () {
+        return Inertia::render('Dashboard/History');
+    })->name('history');
 });
 
 Route::resource('announcement', AnnouncementController::class);
@@ -23,9 +27,6 @@ Route::resource('event', EventController::class);
 Route::resource('org', OrgController::class);
 Route::resource('member', OrgMemberController::class);
 
-Route::get('/history', function () {
-    return Inertia::render('Dashboard/History');
-})->name('history');
 
 // Route::post('/upload-temp-image', [RichTextController::class, 'uploadTemp'])
 //     ->name('upload.temp.image');
