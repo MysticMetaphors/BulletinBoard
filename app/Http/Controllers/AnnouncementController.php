@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Announcement;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
@@ -16,13 +17,21 @@ class AnnouncementController extends Controller
 
     public function index()
     {
-        $announcements = Announcement::all();
+        $announcements = Announcement::where('status', 'Released')->get();
+        foreach ($announcements as $announcement) {
+            $author = User::find($announcement->author);
+            $announcement->author = $author ? $author->name : null;
+        }
         return Inertia::render('Announcement', ['anno' => $announcements]);
     }
 
     public function dashboard()
     {
         $announcements = Announcement::all();
+        foreach ($announcements as $announcement) {
+            $author = User::find($announcement->author);
+            $announcement->author = $author ? $author->name : null;
+        }
         return Inertia::render('Dashboard/Announcement', [
             'anno' => $announcements,
             'user' => Auth::user()

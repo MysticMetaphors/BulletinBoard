@@ -1,9 +1,11 @@
+import { Head } from "@inertiajs/react";
 import Footer from "../Components/Footer";
 import Navigation from "../Components/Navigation";
 
 export default function DefaultLayout({ children }) {
     return (
         <>
+            <Head title="SPI"/>
             <Navigation />
             {children}
             <Footer />

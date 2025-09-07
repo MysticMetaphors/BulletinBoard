@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 class EventController extends Controller
@@ -15,13 +17,27 @@ class EventController extends Controller
 
     public function index()
     {
-        $event = Event::all();
-        return Inertia::render('Event', ['event' => $event]);
+        $event = Event::where('status', 'Released')
+            ->where('start', '>', now())
+            ->get();
+
+        $event_past = Event::where('status', 'Released')
+            ->where('start', '<', now())
+            ->get();
+
+        return Inertia::render('Event', [
+            'event' => $event,
+            'event_past' => $event_past
+        ]);
     }
 
     public function dashboard()
     {
         $events = Event::all();
+        foreach ($events as $event) {
+            $author = User::find($event->author);
+            $event->author = $author ? $author->name : null;
+        }
         return Inertia::render('Dashboard/Event', [
             'event' => $events
         ]);
@@ -34,7 +50,6 @@ class EventController extends Controller
 
     public function store(Request $request)
     {
-        dd($request->all());
         try {
             $validatedData = $request->validate([
                 'title' => 'required|string|max:50',
@@ -49,7 +64,7 @@ class EventController extends Controller
             ]);
         }
 
-        $validatedData['author'] = 1;
+        $validatedData['author'] = Auth::user()->id;
 
         Event::create($validatedData);
         return Inertia::render('Dashboard/Event/CreateEvent', [

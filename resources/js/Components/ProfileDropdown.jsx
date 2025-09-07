@@ -1,24 +1,25 @@
 import { Link } from "@inertiajs/react"
 
-export default function ProfileDropdown() {
-
+export default function ProfileDropdown({auth}) {
     function toggleProfile() {
         const prof = document.getElementById('profdrop')
         prof.classList.toggle('hidden')
     }
+
+    console.log(auth)
 
     return (
         <>
             <div className="relative">
                 <button onClick={toggleProfile} className="flex items-center text-sm pe-1 font-medium text-primaryGrey-1000 rounded-full cursor-pointer" type="button">
                     <span className="sr-only">Open user menu</span>
-                    <img className="w-8 h-8 me-2 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="user photo" />
+                    <img className="w-8 h-8 me-2 rounded-full" src={`./../storage/uploads/${auth.avatar}`} alt="user photo" />
                 </button>
 
                 <div id="profdrop" className="absolute right-0 mt-2 z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44">
                     <div className="px-4 py-3 text-sm text-gray-900">
-                        <div className="font-medium ">John Doe</div>
-                        <div className="truncate">Johndoe@gmail.com</div>
+                        <div className="font-medium ">{auth.name}</div>
+                        <div className="truncate">{auth.email}</div>
                     </div>
                     <ul className="py-2 text-sm text-gray-700">
                         <li>

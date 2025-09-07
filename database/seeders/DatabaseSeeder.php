@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'root',
             'email' => 'root@gmail.com',
             'role' => 'admin',
+            'avatar' => 'event_1756870408.jpg',
             'password' => bcrypt('12345678')
         ]);
 
@@ -24,6 +25,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'member',
             'email' => 'member@gmail.com',
             'role' => 'member',
+            'avatar' => 'event_1756870408.jpg',
             'password' => bcrypt('12345678')
         ]);
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Organization;
+use App\Models\OrganizationMem;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -61,6 +62,13 @@ class OrgController extends Controller
     public function show($id)
     {
         $organization = Organization::findOrFail($id);
-        return Inertia::render('Dashboard/OrgView', ['org' => $organization]);
+        $org_members = OrganizationMem::where('organization_id', $id)->get();
+        if ($org_members->isEmpty()) {
+            $org_members = null;
+        }
+        return Inertia::render('Dashboard/OrgView', [
+            'org' => $organization,
+            'members' => $org_members,
+        ]);
     }
 }

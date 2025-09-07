@@ -29,7 +29,7 @@ return new class extends Migration
             $table->string('role')->default('member');
             $table->string('contact')->nullable();
             $table->string('avatar');
-            $table->string('bio')->nullable();
+            $table->longText('description')->nullable();
             $table->string('experience')->nullable();
             $table->timestamps();
         });

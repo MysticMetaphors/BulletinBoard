@@ -1,4 +1,4 @@
-import { Link, router } from "@inertiajs/react";
+import { Head, Link, router, usePage } from "@inertiajs/react";
 import { useState } from "react";
 import SPIButton from "../Components/SPIComps/SPIButton";
 import ProfileDropdown from "../Components/ProfileDropdown";
@@ -7,6 +7,7 @@ import { route } from "ziggy-js";
 import logo from '../assets/SkillPowerInstituteLogo.png'
 
 export default function DashboardLayout({ children }) {
+    const { auth } = usePage().props
     const [activePage, setActivePage] = useState(null);
 
     function openNav() {
@@ -28,6 +29,7 @@ export default function DashboardLayout({ children }) {
     return (
         <>
             <nav className="fixed top-0 z-50 w-full bg-green-primary border-b border-gray-200">
+                <Head title="SPI - Dashboard"/>
                 <div className="px-3 py-3 lg:px-5 lg:pl-3">
                     <div className="flex items-center justify-between">
                         <div className="flex items-center justify-start rtl:justify-end">
@@ -48,7 +50,7 @@ export default function DashboardLayout({ children }) {
                                     activePage == "org" ? <SPIButton text="New Organization" link_to={'org.create'} theme={'secondary'} /> :
                                         activePage == "user" ? <SPIButton text="New User" link_to={'event.create'} theme={'secondary'} /> : ''}
                             <div className="flex items-center ms-3">
-                                <ProfileDropdown />
+                                <ProfileDropdown auth={auth.user}/>
                             </div>
                         </div>
                     </div>

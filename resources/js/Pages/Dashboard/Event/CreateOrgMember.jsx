@@ -7,13 +7,12 @@ import { router, usePage } from "@inertiajs/react";
 export default function CreateOrgMember() {
     const { errors, title, id } = usePage().props;
     const [form, setForm] = useState({
-        id: id,
         name: '',
-        organization_id: '',
+        organization_id: id,
         role: '',
         contact: '',
         avatar: null,
-        bio: '',
+        description: '',
         experience: '',
     });
 
@@ -28,22 +27,20 @@ export default function CreateOrgMember() {
                 const success = page.props.flash?.success;
                 if (success) {
                     setForm({
-                        id: null,
                         name: '',
-                        organization_id: '',
+                        organization_id: id,
                         role: '',
                         contact: '',
                         avatar: null,
-                        bio: '',
+                        description: '',
                         experience: '',
                     });
-                    setStep(1);
                     appendToast('toast-append', 'success', 'Successfully Added');
                 }
             },
             onError: (page) => {
                 Object.keys(page).forEach((field) => {
-                    appendToast('toast-append', 'error', errors[field][0]);
+                    appendToast('toast-append', 'error', errors[field]);
                 });
             },
         });
@@ -79,7 +76,7 @@ export default function CreateOrgMember() {
                             </div>
                         </div>
 
-                        <div className="mb-6">
+                        {/* <div className="mb-6">
                             <label htmlFor="advisor" className="block mb-2 text-sm font-medium text-gray-900">Advisor's Name</label>
                             <input
                                 value={form.advisor} onChange={handleChange}
@@ -89,7 +86,7 @@ export default function CreateOrgMember() {
                                 id="advisor"
                                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                             />
-                        </div>
+                        </div> */}
 
                         <div className="grid grid-cols-2 gap-4">
                             <div className="mb-6">
@@ -116,11 +113,11 @@ export default function CreateOrgMember() {
                             </div>
                         </div>
 
-                        <label htmlFor="bio" className="block mb-2 text-sm font-medium text-gray-900">Bio</label>
+                        <label htmlFor="description" className="block mb-2 text-sm font-medium text-gray-900">Description</label>
                         <textarea
-                            value={form.bio} onChange={handleChange}
-                            name="bio"
-                            id="bio"
+                            value={form.description} onChange={handleChange}
+                            name="description"
+                            id="description"
                             rows="4"
                             className="mb-4 block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
                             placeholder="Write your thoughts here..."

@@ -1,6 +1,10 @@
 import { createRoot } from 'react-dom/client';
 import Toast from './Components/Toast';
 
+export default function Global() {
+
+}
+
 export function appendToast(containerId, theme, text) {
     const container = document.getElementById(containerId);
     if (!container) return;
@@ -17,7 +21,7 @@ export function appendToast(containerId, theme, text) {
     }, 5000);
 }
 
-export default function formatDate(dateStr) {
+export function formatDate(dateStr) {
     if (!dateStr) return '';
     const date = new Date(dateStr);
     return date.toLocaleDateString('en-US', {
@@ -25,5 +29,17 @@ export default function formatDate(dateStr) {
         month: 'long',
         day: 'numeric',
     });
+}
 
+export function formatTime(time) {
+    console.log(time)
+     if (!time) return '';
+
+    const [hours, minutes] = time.split(':');
+    const date = new Date();
+    date.setHours(hours);
+    date.setMinutes(minutes);
+    date.setSeconds(0);
+
+    return (date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
 }

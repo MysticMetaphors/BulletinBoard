@@ -22,7 +22,7 @@ class EventSeeder extends Seeder
                 'start' => $startDate,
                 'time' => now()->format('H:i:s'),
                 'location' => $faker->address(),
-                'status' => $faker->randomElement(['Draft', 'Released', 'Cancelled', 'Deprecated']),
+                'status' => $faker->randomElement(['Draft', 'Released']),
                 'created_at' => now(),
                 'updated_at' => now(),
             ];

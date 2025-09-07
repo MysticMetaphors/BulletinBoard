@@ -11,7 +11,7 @@ export default function SPIButton({ text = 'Default', link_to, type = "button", 
     function setTheme(theme) {
         switch (theme) {
             case 'secondary':
-                return 'text-green-100 cursor-pointer hover:text-white border border-green-primary hover:border-green-100 font-medium rounded-lg text-sm px-5 py-[5px] text-center'
+                return 'text-green-100 cursor-pointer hover:text-white border border-green-100 font-medium rounded-lg text-sm px-5 py-[5px] text-center'
             default:
                 return 'text-green-primary cursor-pointer hover:text-white border border-green-primary hover:bg-green-primary font-medium rounded-lg text-sm px-5 py-[5px] text-center'
         }

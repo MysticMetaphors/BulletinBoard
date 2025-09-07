@@ -3,7 +3,7 @@ import DefaultLayout from "../Layouts/DefaultLayout"
 import formatDate from "../global";
 
 export default function Event() {
-    const { event } = usePage().props;
+    const { event, event_past } = usePage().props;
     return (
         <>
             <div className="w-full h-full px-8 sm:px-12 lg:px-24">
@@ -25,9 +25,9 @@ export default function Event() {
                     ))}
                 </div>
 
-                <h1 className="text-4xl font-bold mb-4 mt-12 md:px-26">Events</h1>
+                <h1 className="text-4xl font-bold mb-4 mt-12 md:px-26">Past Events</h1>
                 <div className="grid grid-cols-3 gap-5 justify-center px-0 lg:px-24">
-                    {event.map((events) => (
+                    {event_past.map((events) => (
                         <div className="max-w-90 p-6 bg-white border border-gray-200 rounded-lg shadow-sm">
                             <p className="mb-3 font-normal text-gray-700">{formatDate(events.start)}</p>
                             <a href="#">
