@@ -11,10 +11,17 @@ use Inertia\Inertia;
 Route::get('/', [AnnouncementController::class, 'index'])->name('home');
 
 Route::middleware(['auth', 'admin'])->group(function () {
+    // ================= ANNOUNCEMENT =================
     Route::get('announcement/dashboard', [AnnouncementController::class, 'dashboard'])
         ->name('announcement.dashboard');
     Route::get('event/dashboard', [EventController::class, 'dashboard'])
         ->name('event.dashboard');
+    Route::post('announcement/update_status/{id}', [AnnouncementController::class, 'update_status'])
+        ->name('announcement.update_stat');
+
+    // ================= EVENT =================
+    Route::post('event/update_status/{id}', [EventController::class, 'update_status'])
+        ->name('event.update_stat');
 
     Route::get('/history', function () {
         return Inertia::render('Dashboard/History');

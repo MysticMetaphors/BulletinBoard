@@ -58,9 +58,6 @@ export default function OrgView() {
                     </div>
                 </div>
             </div>
-
-
-
         </div>
     )
 }

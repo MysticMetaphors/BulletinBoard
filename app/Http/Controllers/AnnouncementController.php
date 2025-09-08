@@ -64,9 +64,24 @@ class AnnouncementController extends Controller
         ]);
     }
 
-    public function show($id) {
+    public function show($id)
+    {
         $announce = Announcement::findOrFail($id);
         if ($announce == null) return dd($announce);
         return Inertia::render('AnnoView', ['anno' => $announce]);
+    }
+
+    public function update_status($id)
+    {
+        try {
+            $item = Announcement::findOrFail($id);
+            $item->status = $item->status === 'Released' ? 'Draft' : 'Released';
+            $item->save();
+            return redirect()->back()->with(['flash' => ['success' => true]]);
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return redirect()->back()->withErrors(['errors' => 'Announcement not found']);
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(['errors' => 'An unexpected error occurred']);
+        }
     }
 }

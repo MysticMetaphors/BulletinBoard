@@ -1,12 +1,11 @@
 import { Link } from "@inertiajs/react"
+import { route } from "ziggy-js"
 
 export default function ProfileDropdown({auth}) {
     function toggleProfile() {
         const prof = document.getElementById('profdrop')
         prof.classList.toggle('hidden')
     }
-
-    console.log(auth)
 
     return (
         <>
@@ -23,7 +22,7 @@ export default function ProfileDropdown({auth}) {
                     </div>
                     <ul className="py-2 text-sm text-gray-700">
                         <li>
-                            <Link to={'/profile'} className="block px-4 py-2 hover:bg-gray-100">My Profile</Link>
+                            <Link href={route('user.show', auth.id)} className="block px-4 py-2 hover:bg-gray-100">My Profile</Link>
                         </li>
                     </ul>
                     <div className="py-2">

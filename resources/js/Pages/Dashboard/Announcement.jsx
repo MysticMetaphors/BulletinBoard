@@ -3,12 +3,11 @@ import SPIBadges from "../../Components/SPIComps/SPIBadge";
 import DashboardLayout from "../../Layouts/DashboardLayout";
 import SPIDropdownMenu from "../../Components/SPIComps/SPIDropdownMenu";
 import { formatDate } from "../../global";
+import EditableDropdown from "../../Components/EditableDropdown";
 
 export default function Announcement() {
-    const { anno, user} = usePage().props;
+    const { anno, user } = usePage().props;
 
-    console.log(user);
-    console.log(anno);
     function setTheme(status) {
         switch (status) {
             case 'Released':
@@ -77,13 +76,19 @@ export default function Announcement() {
                                         {annos.author}
                                     </td>
                                     <td className="px-6 py-2">
-                                        <SPIBadges theme={setTheme(annos.status)} text={annos.status} />
+                                        <div className="grid grid-flow-col gap-0 place-items-center w-fit">
+                                            <SPIBadges theme={setTheme(annos.status)} text={annos.status} />
+                                            <EditableDropdown selected={annos.status} items={[
+                                                { text: 'Released', link: 'announcement.update_stat', param: annos.id },
+                                                { text: 'Draft', link: 'announcement.update_stat', param: annos.id},
+                                            ]} />
+                                        </div>
                                     </td>
                                     <td className="px-6 py-2">
                                         {formatDate(annos.created_at)}
                                     </td>
                                     <td className="px-6 py-2 flex">
-                                        <SPIDropdownMenu view={['announcement.show', annos.id]}/>
+                                        <SPIDropdownMenu view={['announcement.show', annos.id]} />
                                     </td>
                                 </tr>
                             ))}

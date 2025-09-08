@@ -4,6 +4,7 @@ import DashboardLayout from "../../Layouts/DashboardLayout";
 import SPIDropdownMenu from "../../Components/SPIComps/SPIDropdownMenu";
 import { formatDate } from "../../global";
 import { formatTime } from "../../global";
+import EditableDropdown from "../../Components/EditableDropdown";
 
 export default function Event() {
     const { event } = usePage().props
@@ -19,7 +20,7 @@ export default function Event() {
             case 'Deprecated':
                 return 'danger';
             default:
-            return 'info';
+                return 'info';
         }
     }
 
@@ -79,7 +80,13 @@ export default function Event() {
                                         {events.author}
                                     </td>
                                     <td className="px-6 py-2">
-                                        <SPIBadges theme={setTheme(events.status)} text={events.status} />
+                                        <div className="grid grid-flow-col gap-0 place-items-center w-fit">
+                                            <SPIBadges theme={setTheme(events.status)} text={events.status} />
+                                            <EditableDropdown selected={events.status} items={[
+                                                {text: 'Released', link: 'event.update_stat', param: events.id},
+                                                {text: 'Draft', link: 'event.update_stat', param: events.id},
+                                            ]}/>
+                                        </div>
                                     </td>
                                     <td className="px-6 py-2">
                                         {formatDate(events.start)}
@@ -88,7 +95,7 @@ export default function Event() {
                                         {formatTime(events.time)}
                                     </td>
                                     <td className="px-6 py-2 flex gap-2">
-                                        <SPIDropdownMenu view={['event.show', events.id]}/>
+                                        <SPIDropdownMenu view={['event.show', events.id]} />
                                     </td>
                                 </tr>
                             ))}
@@ -96,32 +103,32 @@ export default function Event() {
                     </table>
                 </div>
                 {event.length > 10 ?
-                <nav className="flex items-center flex-column flex-wrap md:flex-row justify-between pt-4" aria-label="Table navigation">
-                    <span className="text-sm font-normal text-gray-500 mb-4 md:mb-0 block w-full md:inline md:w-auto">Showing <span className="font-semibold text-gray-900">1-10</span> of <span className="font-semibold text-gray-900">1000</span></span>
-                    <ul className="inline-flex -space-x-px rtl:space-x-reverse text-sm h-8">
-                        <li>
-                            <a href="#" className="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700">Previous</a>
-                        </li>
-                        <li>
-                            <a href="#" className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700">1</a>
-                        </li>
-                        <li>
-                            <a href="#" className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700">2</a>
-                        </li>
-                        <li>
-                            <a href="#" aria-current="page" className="flex items-center justify-center px-3 h-8 text-blue-600 border border-gray-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700">3</a>
-                        </li>
-                        <li>
-                            <a href="#" className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700">4</a>
-                        </li>
-                        <li>
-                            <a href="#" className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700">5</a>
-                        </li>
-                        <li>
-                            <a href="#" className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700">Next</a>
-                        </li>
-                    </ul>
-                </nav>: ''}
+                    <nav className="flex items-center flex-column flex-wrap md:flex-row justify-between pt-4" aria-label="Table navigation">
+                        <span className="text-sm font-normal text-gray-500 mb-4 md:mb-0 block w-full md:inline md:w-auto">Showing <span className="font-semibold text-gray-900">1-10</span> of <span className="font-semibold text-gray-900">1000</span></span>
+                        <ul className="inline-flex -space-x-px rtl:space-x-reverse text-sm h-8">
+                            <li>
+                                <a href="#" className="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700">Previous</a>
+                            </li>
+                            <li>
+                                <a href="#" className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700">1</a>
+                            </li>
+                            <li>
+                                <a href="#" className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700">2</a>
+                            </li>
+                            <li>
+                                <a href="#" aria-current="page" className="flex items-center justify-center px-3 h-8 text-blue-600 border border-gray-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700">3</a>
+                            </li>
+                            <li>
+                                <a href="#" className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700">4</a>
+                            </li>
+                            <li>
+                                <a href="#" className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700">5</a>
+                            </li>
+                            <li>
+                                <a href="#" className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700">Next</a>
+                            </li>
+                        </ul>
+                    </nav> : ''}
             </div>
         </>
     )

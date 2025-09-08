@@ -40,7 +40,7 @@ export default function DashboardLayout({ children }) {
                                 </svg>
                             </button>
                             <Link href={route('home')} className="flex ms-2 md:me-24">
-                                <img src={logo} className="h-8 w-8 me-3" alt="FlowBite Logo" />
+                                <img src={logo} className="h-8 w-8 me-3" alt="SPI Logo" />
                                 <span className="self-center text-2xl whitespace-nowrap text-primaryYellow-1000 font-bold hidden md:block sm:hidden"></span>
                             </Link>
                         </div>
