@@ -41,6 +41,7 @@ class OrgController extends Controller
                 'mission' => 'required|string',
                 'vision' => 'required|string',
                 'logo' => 'required|image|max:2048',
+                'is_foundation' => 'required|boolean'
             ]);
         } catch (\Illuminate\Validation\ValidationException $e) {
             return Inertia::render('Dashboard/Event/CreateOrg', [
@@ -53,6 +54,9 @@ class OrgController extends Controller
         $file->storeAs('uploads', $fileName, 'public');
 
         $validatedData['logo'] = $fileName;
+        if ($validatedData['is_foundation'] == true) {
+            // $validatedData
+        }
         Organization::create($validatedData);
         return Inertia::render('Dashboard/Event/CreateOrg', [
             'flash' => ['success' => true],

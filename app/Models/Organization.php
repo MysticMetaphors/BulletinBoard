@@ -16,6 +16,6 @@ class Organization extends Model
         'description',
         'mission',
         'vision',
-        'logo'
+        'logo',
     ];
 }

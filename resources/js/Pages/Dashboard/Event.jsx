@@ -83,8 +83,8 @@ export default function Event() {
                                         <div className="grid grid-flow-col gap-0 place-items-center w-fit">
                                             <SPIBadges theme={setTheme(events.status)} text={events.status} />
                                             <EditableDropdown selected={events.status} items={[
-                                                {text: 'Released', link: 'event.update_stat', param: events.id},
-                                                {text: 'Draft', link: 'event.update_stat', param: events.id},
+                                                {text: 'Released', link: 'event.update_stat', param: [events.id, 'Released']},
+                                                {text: 'Draft', link: 'event.update_stat', param: [events.id, 'Draft']},
                                             ]}/>
                                         </div>
                                     </td>
@@ -95,7 +95,7 @@ export default function Event() {
                                         {formatTime(events.time)}
                                     </td>
                                     <td className="px-6 py-2 flex gap-2">
-                                        <SPIDropdownMenu view={['event.show', events.id]} />
+                                        <SPIDropdownMenu view={['event.show', events.id]} remove={['event.update_stat', [events.id, 'Deprecated']]}/>
                                     </td>
                                 </tr>
                             ))}

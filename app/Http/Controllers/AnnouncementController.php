@@ -71,11 +71,11 @@ class AnnouncementController extends Controller
         return Inertia::render('AnnoView', ['anno' => $announce]);
     }
 
-    public function update_status($id)
+    public function update_status($id, $set)
     {
         try {
             $item = Announcement::findOrFail($id);
-            $item->status = $item->status === 'Released' ? 'Draft' : 'Released';
+            $item->status = $set;
             $item->save();
             return redirect()->back()->with(['flash' => ['success' => true]]);
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
@@ -84,4 +84,21 @@ class AnnouncementController extends Controller
             return redirect()->back()->withErrors(['errors' => 'An unexpected error occurred']);
         }
     }
+
+    // public function destroy($id)
+    // {
+    //     dd($id);
+    //     try {
+    //         $item = Announcement::findOrFail($id);
+    //         dd($item);
+    //         $item->status = 'Deprecated';
+    //         $item->save();
+    //         dd($item);
+    //         return redirect()->back()->with(['flash' => ['success' => true]]);
+    //     } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+    //         return redirect()->back()->withErrors(['errors' => 'Announcement not found']);
+    //     } catch (\Exception $e) {
+    //         return redirect()->back()->withErrors(['errors' => 'An unexpected error occurred']);
+    //     }
+    // }
 }

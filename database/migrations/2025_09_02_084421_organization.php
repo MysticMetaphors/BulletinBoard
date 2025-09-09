@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('mission')->nullable();
             $table->string('vision')->nullable();
             $table->string('logo')->nullable();
+            $table->enum('org_type', ['org', 'foundation'])->default('org');
             $table->timestamps();
         });
 

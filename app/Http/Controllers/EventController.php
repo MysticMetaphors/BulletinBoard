@@ -79,11 +79,11 @@ class EventController extends Controller
         return Inertia::render('EventView', ['event' => $event]);
     }
 
-    public function update_status($id)
+    public function update_status($id, $set)
     {
         try {
             $item = Event::findOrFail($id);
-            $item->status = $item->status === 'Released' ? 'Draft' : 'Released';
+            $item->status = $set;
             $item->save();
             return redirect()->back()->with(['flash' => ['success' => true],]);
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
