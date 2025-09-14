@@ -79,8 +79,8 @@ export default function Announcement() {
                                         <div className="grid grid-flow-col gap-0 place-items-center w-fit">
                                             <SPIBadges theme={setTheme(annos.status)} text={annos.status} />
                                             <EditableDropdown selected={annos.status} items={[
-                                                { text: 'Released', link: 'announcement.update_stat', param: [annos.id, 'Draft'] },
-                                                { text: 'Draft', link: 'announcement.update_stat', param: [annos.id, 'Released']},
+                                                { text: 'Released', link: 'announcement.update_stat', param: [annos.id, 'Released'] },
+                                                { text: 'Draft', link: 'announcement.update_stat', param: [annos.id, 'Draft']},
                                             ]} />
                                         </div>
                                     </td>
@@ -88,7 +88,7 @@ export default function Announcement() {
                                         {formatDate(annos.created_at)}
                                     </td>
                                     <td className="px-6 py-2 flex">
-                                        <SPIDropdownMenu view={['announcement.show', annos.id]} remove={['announcement.update_stat', [annos.id, 'Deprecated']]}/>
+                                        <SPIDropdownMenu view={['announcement.show', annos.id]} edit={['announcement.edit', annos.id]} remove={['announcement.update_stat', [annos.id, 'Deprecated']]}/>
                                     </td>
                                 </tr>
                             ))}

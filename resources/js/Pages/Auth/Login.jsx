@@ -73,7 +73,7 @@ export default function Login() {
                             <a href="#" className="text-sm font-medium text-white hover:underline">Forgot password?</a>
                         </div>
 
-                        <div class="inline-flex relative items-center justify-center w-full">
+                        {/* <div class="inline-flex relative items-center justify-center w-full">
                             <hr class="w-full h-px my-1 bg-gray-200 border-0" />
                             <span class="absolute px-3 font-medium text-white bg-green-primary -translate-x-1/2 left-1/2">or</span>
                         </div>
@@ -87,7 +87,7 @@ export default function Login() {
                                 </svg>
                                 Sign in with Google
                             </button>
-                        </div>
+                        </div> */}
                         {/* <p className="text-sm font-light text-white">
                             Don’t have an account yet? <Link href={route('register')} className="font-medium text-white hover:underline">Create an account</Link>
                         </p> */}

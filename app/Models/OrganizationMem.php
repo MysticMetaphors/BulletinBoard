@@ -17,6 +17,7 @@ class OrganizationMem extends Model
         'contact',
         'avatar',
         'bio',
+        'description',
         'experience',
     ];
 }

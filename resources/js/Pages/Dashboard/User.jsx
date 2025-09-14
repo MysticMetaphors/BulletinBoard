@@ -77,7 +77,7 @@ export default function User() {
                             {users.map((user) => (
                                 <tr className="bg-white border-b border-gray-200">
                                     <th scope="row" className="px-6 py-2 font-medium text-gray-900 whitespace-nowrap">
-                                        <img src={`./storage/uploads/${user.avatar}`} className="h-10 w-10" alt="" />
+                                        <img src={`./storage/uploads/${user.avatar}`} className="h-10 w-10 rounded-full" alt="" />
                                     </th>
                                     <th scope="row" className="px-6 py-2 font-medium text-gray-900 whitespace-nowrap">
                                         {user.name}
@@ -92,7 +92,7 @@ export default function User() {
                                         {formatDate(user.created_at)}
                                     </td>
                                     <td className="px-6 py-2 flex">
-                                        <SPIDropdownMenu />
+                                        <SPIDropdownMenu is_edit={false}/>
                                     </td>
                                 </tr>
                             ))}

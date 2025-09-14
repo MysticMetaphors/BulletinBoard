@@ -9,6 +9,10 @@ use Inertia\Inertia;
 
 class OrgMemberController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth', 'admin'])->except(['index', 'show']);
+    }
     // public function index()
     // {
     //     $organization = Organization::all();
@@ -28,6 +32,8 @@ class OrgMemberController extends Controller
         $title = $organization->title;
         return Inertia::render('Dashboard/Event/CreateOrgMember', ['id' => $orgId, 'title' => $title]);
     }
+
+
 
     public function store(Request $request)
     {
@@ -54,14 +60,8 @@ class OrgMemberController extends Controller
 
         $validatedData['avatar'] = $fileName;
         OrganizationMem::create($validatedData);
-        $orgId = $request->query('id');
-        $organization = Organization::findOrFail($orgId);
-        $title = $organization->title;
-        return Inertia::render('Dashboard/Event/CreateOrgMember', [
-            'flash' => ['success' => true],
-            'id' => $orgId,
-            'title' => $title
-        ]);
+        $orgId = $validatedData['organization_id'];
+        return redirect()->route('org.show', $orgId);
     }
 
     // public function show($id)

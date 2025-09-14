@@ -19,6 +19,7 @@ export default function CreateOrg() {
 
     function handleChange(e) {
         setForm({ ...form, [e.target.name]: e.target.value });
+        console.log(form)
     };
 
     function handleNext() {
@@ -79,6 +80,7 @@ export default function CreateOrg() {
                             <p className="text-sm">Provide the core details about your organization.</p>
                         </span>
                     </li>
+                    { !form.is_foundation ?
                     <li
                         className={`flex items-center space-x-2.5 rtl:space-x-reverse ${step >= 2 ? 'text-green-primary' : 'text-gray-500'
                             }`}
@@ -93,7 +95,7 @@ export default function CreateOrg() {
                             <h3 className="font-medium leading-tight">Mission & Vision</h3>
                             <p className="text-sm">Define your organization's purpose and future direction.</p>
                         </span>
-                    </li>
+                    </li> : '' }
                 </ol>
                 <form action="" onSubmit={handleSubmit} className="lg:w-[50%]">
 
@@ -143,14 +145,31 @@ export default function CreateOrg() {
                             />
                         </div>
 
-                        <div class="flex items-center mb-6">
-                            <input id="disabled-checked-checkbox" value={form.is_foundation} name="is_foundation" onChange={(e) => setForm({ ...form, [e.target.name]: !form.is_foundation })} type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 focus:ring-2" />
-                            <label for="disabled-checked-checkbox" class="ms-2 text-sm font-medium text-gray-400 dark:text-gray-500">Foundation Org?</label>
+                        <div className="flex items-center mb-6">
+                            <input
+                                id="foundation-checkbox"
+                                type="checkbox"
+                                checked={form.is_foundation}
+                                name="is_foundation"
+                                onChange={(e) => setForm({ ...form, is_foundation: e.target.checked })}
+                                className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 focus:ring-2"
+                            />
+                            <label
+                                htmlFor="foundation-checkbox"
+                                className="ms-2 text-sm font-medium text-gray-400 dark:text-gray-500"
+                            >
+                                Foundation Org?
+                            </label>
                         </div>
 
-                        <button type="button" onClick={handleNext} className="text-green-primary cursor-pointer hover:text-white border border-green-primary hover:bg-green-primary font-medium rounded-lg text-sm px-5 py-[5px] text-center">
-                            Next
-                        </button>
+                        {form.is_foundation ?
+                            <button type="submit" className="text-green-primary cursor-pointer hover:text-white border border-green-primary hover:bg-green-primary font-medium rounded-lg text-sm px-5 py-[5px] text-center">
+                                Submit
+                            </button> :
+                            <button type="button" onClick={handleNext} className="text-green-primary cursor-pointer hover:text-white border border-green-primary hover:bg-green-primary font-medium rounded-lg text-sm px-5 py-[5px] text-center">
+                                Next
+                            </button>
+                        }
                     </div>
                         : step == 2 ? <div>
                             <label htmlFor="mission" className="block mb-2 text-sm font-medium text-gray-900">Mission</label>

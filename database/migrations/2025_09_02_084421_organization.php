@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('organization', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('description')->nullable();
+            $table->longText('description')->nullable();
             $table->string('advisor')->nullable();
-            $table->string('mission')->nullable();
-            $table->string('vision')->nullable();
+            $table->longText('mission')->nullable();
+            $table->longText('vision')->nullable();
             $table->string('logo')->nullable();
             $table->enum('org_type', ['org', 'foundation'])->default('org');
             $table->timestamps();

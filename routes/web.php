@@ -11,7 +11,7 @@ use Inertia\Inertia;
 
 Route::get('/', [AnnouncementController::class, 'index'])->name('home');
 
-Route::middleware(['auth', 'admin'])->group(function () {
+Route::middleware(['auth'])->group(function () {
     // ================= ANNOUNCEMENT =================
     Route::get('announcement/dashboard', [AnnouncementController::class, 'dashboard'])
         ->name('announcement.dashboard');
@@ -24,9 +24,9 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('event/dashboard', [EventController::class, 'dashboard'])
         ->name('event.dashboard');
 
-    // // ================= ORGANIZATIONS(EVENT) =================
-    // Route::get('org/foundation', [OrgController::class, 'foundation'])
-    //     ->name('org.foundation');
+    // // ================= ORGANIZATIONS =================
+    Route::get('org/dashboard', [OrgController::class, 'dashboard'])
+        ->name('org.dashboard');
     // Route::get('org/foundation/{id}', [OrgController::class, 'foundation'])
     //     ->name('org.foundation');
 

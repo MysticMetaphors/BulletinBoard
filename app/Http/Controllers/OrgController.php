@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Organization;
 use App\Models\OrganizationMem;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 class OrgController extends Controller
@@ -17,14 +18,14 @@ class OrgController extends Controller
     public function index()
     {
         $organization = Organization::all();
-        return Inertia::render('Dashboard/Organization', ['orgs' => $organization]);
+        return Inertia::render('Organization', ['orgs' => $organization]);
     }
 
-    // public function dashboard()
-    // {
-    //     $organization = Organization::all();
-    //     return Inertia::render('Dashboard/Organization', ['orgs' => $organization]);
-    // }
+    public function dashboard()
+    {
+        $organization = Organization::where('org_type', 'org')->get();
+        return Inertia::render('Dashboard/Organization', ['orgs' => $organization]);
+    }
 
     public function create()
     {
@@ -33,13 +34,14 @@ class OrgController extends Controller
 
     public function store(Request $request)
     {
+        // dd($request->all());
         try {
             $validatedData = $request->validate([
                 'title' => 'required|string|max:100',
                 'description' => 'required|string',
                 'advisor' => 'required|string|max:100',
-                'mission' => 'required|string',
-                'vision' => 'required|string',
+                'mission' => 'nullable|string',
+                'vision' => 'nullable|string',
                 'logo' => 'required|image|max:2048',
                 'is_foundation' => 'required|boolean'
             ]);
@@ -55,8 +57,9 @@ class OrgController extends Controller
 
         $validatedData['logo'] = $fileName;
         if ($validatedData['is_foundation'] == true) {
-            // $validatedData
+            $validatedData['org_type'] = 'foundation';
         }
+        // dd($validatedData);
         Organization::create($validatedData);
         return Inertia::render('Dashboard/Event/CreateOrg', [
             'flash' => ['success' => true],
@@ -70,7 +73,13 @@ class OrgController extends Controller
         if ($org_members->isEmpty()) {
             $org_members = null;
         }
-        return Inertia::render('Dashboard/OrgView', [
+        if (Auth::user()) {
+            return Inertia::render('Dashboard/OrgView', [
+                'org' => $organization,
+                'members' => $org_members,
+            ]);
+        }
+        return Inertia::render('OrgView', [
             'org' => $organization,
             'members' => $org_members,
         ]);

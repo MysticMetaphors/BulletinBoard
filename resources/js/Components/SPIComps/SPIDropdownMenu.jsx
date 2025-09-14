@@ -2,7 +2,7 @@ import { Link, router } from "@inertiajs/react";
 import { useState } from "react";
 import { route } from "ziggy-js";
 
-export default function SPIDropdownMenu({ edit = 'home', view = 'home', remove = 'home' }) {
+export default function SPIDropdownMenu({ is_edit = true, edit = 'home', view = 'home', remove = 'home' }) {
     const [open, setOpen] = useState(false);
 
     function handleRemove(remove) {
@@ -30,11 +30,13 @@ export default function SPIDropdownMenu({ edit = 'home', view = 'home', remove =
             {open && (
                 <div className="absolute right-0 mt-2 w-30 z-1000 origin-top-right bg-white border border-gray-200 divide-y divide-gray-100 rounded-xl shadow-lg transition-all duration-150 ease-out">
                     <ul className="py-1 text-gray-700">
-                        <li>
-                            <Link href={route(typeof edit === 'object' ? edit[0] : edit, typeof edit === 'object' ? edit[1] : undefined)} className="block px-4 py-2 hover:bg-gray-100">
-                                Edit
-                            </Link>
-                        </li>
+                        {is_edit ?
+                            <li>
+                                <Link href={route(typeof edit === 'object' ? edit[0] : edit, typeof edit === 'object' ? edit[1] : undefined)} className="block px-4 py-2 hover:bg-gray-100">
+                                    Edit
+                                </Link>
+                            </li> : ''
+                        }
                         <li>
                             <Link href={route(typeof view === 'object' ? view[0] : view, typeof view === 'object' ? view[1] : undefined)} className="block px-4 py-2 hover:bg-gray-100">
                                 View

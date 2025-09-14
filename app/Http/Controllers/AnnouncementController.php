@@ -12,7 +12,7 @@ class AnnouncementController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['auth', 'admin'])->except(['index', 'show']);
+        $this->middleware(['auth'])->except(['index', 'show']);
     }
 
     public function index()
@@ -82,6 +82,28 @@ class AnnouncementController extends Controller
             return redirect()->back()->withErrors(['errors' => 'Announcement not found']);
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['errors' => 'An unexpected error occurred']);
+        }
+    }
+
+    public function edit($id)
+    {
+        $announce = Announcement::findOrFail($id);
+        return Inertia::render('Dashboard/Event/Edit/Annoucement', ['anno' => $announce]);
+    }
+
+    public function update(Request $request, Announcement $announcement)
+    {
+        try {
+            $validatedData = $request->validate([
+                'title'   => 'required|string|max:100',
+                'content' => 'required|string',
+            ]);
+            $announcement->update($validatedData);
+            return redirect()->route('announcement.dashboard')->setStatusCode(303);;
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return Inertia::render('Dashboard/Event/Edit/Announcement', [
+                'errors' => $e->errors(),
+            ]);
         }
     }
 

@@ -53,7 +53,7 @@ export default function DashboardLayout({ children }) {
                             {activePage == "announcement" ? <SPIButton text="New Announcement" link_to={'announcement.create'} theme={'secondary'} />
                                 : activePage == "event" ? <SPIButton text="New Event" link_to={'event.create'} theme={'secondary'} /> :
                                     activePage == "org" ? <SPIButton text="New Organization" link_to={'org.create'} theme={'secondary'} /> :
-                                        activePage == "user" ? <SPIButton text="New User" link_to={'event.create'} theme={'secondary'} /> : ''}
+                                        activePage == "user" ? <SPIButton text="New User" link_to={'user.create'} theme={'secondary'} /> : ''}
                             <div className="flex items-center ms-3">
                                 <ProfileDropdown auth={auth.user} />
                             </div>
@@ -89,63 +89,45 @@ export default function DashboardLayout({ children }) {
                                 <span className="flex-1 ms-3 whitespace-nowrap">Event</span>
                             </Link>
                         </li>
-                        <li className="relative group">
-                            {/* <Link href={route('org.index')} onClick={() => setActivePage("org")} className="flex items-center p-2 text-primaryGrey-1000 rounded-lg">
-                                <span className="material-symbols-rounded shrink-0 w-5 h-5 text-green-primary transition duration-75">
-                                    group_work
-                                </span>
-                                <span className="flex-1 ms-3 whitespace-nowrap">Organization</span>
-                            </Link> */}
-                            <button type="button" onClick={toggleDropdown} className="flex items-center p-2 text-primaryGrey-1000 rounded-lg" aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
-                                <span class="material-symbols-rounded shrink-0 w-5 h-5 text-green-primary transition duration-75">
-                                    group_work
-                                </span>
-                                <span className="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Organization</span>
-                                <svg className="w-3 h-3 ml-10" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
-                                </svg>
-                            </button>
-                            <ul id="dropdown-works" className="hidden py-2 space-y-2">
-                                <li>
-                                    <Link href={route('org.index')} onClick={() => setActivePage("org")} className="flex items-center w-full p-2 text-green-primary transition duration-75 rounded-lg pl-11 group">Orgs</Link>
+                        {auth.user.role == 'admin' ?
+                            <div className="space-y-2">
+                                <li className="relative group">
+                                    <button type="button" onClick={toggleDropdown} className="flex items-center p-2 text-primaryGrey-1000 rounded-lg" aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
+                                        <span class="material-symbols-rounded shrink-0 w-5 h-5 text-green-primary transition duration-75">
+                                            group_work
+                                        </span>
+                                        <span className="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Organization</span>
+                                        <svg className="w-3 h-3 ml-10" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
+                                        </svg>
+                                    </button>
+                                    <ul id="dropdown-works" className="hidden py-2 space-y-2">
+                                        <li>
+                                            <Link href={route('org.dashboard')} onClick={() => setActivePage("org")} className="flex items-center w-full p-2 text-green-primary transition duration-75 rounded-lg pl-11 group">Campus</Link>
+                                        </li>
+                                        <li>
+                                            <Link href={route('foundation.index')} onClick={() => setActivePage("org")} className="flex items-center w-full p-2 text-green-primary transition duration-75 rounded-lg pl-11 group">Foundation</Link>
+                                        </li>
+                                    </ul>
                                 </li>
                                 <li>
-                                    <Link href={route('foundation.index')} onClick={() => setActivePage("foundation")} className="flex items-center w-full p-2 text-green-primary transition duration-75 rounded-lg pl-11 group">Foundation</Link>
+                                    <Link href={route('history')} onClick={() => setActivePage(null)} className="flex items-center p-2 text-primaryGrey-1000 rounded-lg">
+                                        <span className="material-symbols-rounded shrink-0 w-5 h-5 text-green-primary transition duration-75">
+                                            history_2
+                                        </span>
+                                        <span className="flex-1 ms-3 whitespace-nowrap">History</span>
+                                    </Link>
                                 </li>
-                            </ul>
-                            {/* <button onClick={toggleDropdown} className="flex gap-1 items-center w-full py-2 px-3 hover:bg-violet-900">
-                                <div>Gallery</div>
-                                <span className="material-symbols-rounded">keyboard_arrow_down</span>
-                            </button>
-
-                            <div
-                                id="dropdownNavbar"
-                                className="z-10 hidden group-hover:block md:absolute md:bg-violet-1000 left-0 font-normal divide-y rounded-lg shadow-sm w-44 divide-gray-600"
-                            >
-                                <ul className="md:py-2 md:px-0 px-5 py-0 md:text-sm text-normal">
-                                    <li><div className="block py-2 lg:pl-[20px] px-3">Pack</div></li>
-                                    <li><div className="block py-2 lg:pl-[20px] px-3">Sprites</div></li>
-                                    <li><div className="block py-2 lg:pl-[20px] px-3">Tilesets</div></li>
-                                    <li><div className="block py-2 lg:pl-[20px] px-3">Backgrounds</div></li>
-                                </ul>
-                            </div> */}
-                        </li>
-                        <li>
-                            <Link href={route('history')} onClick={() => setActivePage(null)} className="flex items-center p-2 text-primaryGrey-1000 rounded-lg">
-                                <span className="material-symbols-rounded shrink-0 w-5 h-5 text-green-primary transition duration-75">
-                                    history_2
-                                </span>
-                                <span className="flex-1 ms-3 whitespace-nowrap">History</span>
-                            </Link>
-                        </li>
-                        <li>
-                            <Link href={route('user.index')} onClick={() => setActivePage("user")} className="flex items-center p-2 text-primaryGrey-1000 rounded-lg">
-                                <span className="material-symbols-rounded shrink-0 w-5 h-5 text-green-primary transition duration-75">
-                                    manage_accounts
-                                </span>
-                                <span className="ms-3">User</span>
-                            </Link>
-                        </li>
+                                <li>
+                                    <Link href={route('user.index')} onClick={() => setActivePage("user")} className="flex items-center p-2 text-primaryGrey-1000 rounded-lg">
+                                        <span className="material-symbols-rounded shrink-0 w-5 h-5 text-green-primary transition duration-75">
+                                            manage_accounts
+                                        </span>
+                                        <span className="ms-3">User</span>
+                                    </Link>
+                                </li>
+                            </div>
+                            : ''}
                         <li>
                             <a href="#" className="flex items-center p-2 text-primaryGrey-1000 rounded-lg" onClick={toggleModal}>
                                 <span className="material-symbols-rounded shrink-0 w-5 h-5 text-green-primary transition duration-75">
@@ -185,7 +167,7 @@ export default function DashboardLayout({ children }) {
             <div className="p-4 h-screen sm:ml-64">
                 {children}
             </div>
-            <div className="absolute bottom-10 h-fit right-10 space-y-4" id="toast-append">
+            <div className="fixed bottom-10 h-fit right-10 space-y-4" id="toast-append">
             </div>
         </>
     )

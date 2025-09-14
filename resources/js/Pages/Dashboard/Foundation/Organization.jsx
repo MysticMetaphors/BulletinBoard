@@ -21,7 +21,7 @@ export default function Organization() {
                             <span className="text-sm text-gray-500">{orgs.advisor}</span>
                             <div className="flex gap-1 mt-4 md:mt-6">
                                 <Link href={route('org.show', orgs.id)}>
-                                    <SPIButton text="Manage Officers" />
+                                    <SPIButton text="Manage" />
                                 </Link>
                             </div>
                         </div>

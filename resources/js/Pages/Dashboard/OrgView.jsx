@@ -5,11 +5,10 @@ import { route } from "ziggy-js"
 
 export default function OrgView() {
     const { org, members } = usePage().props
-    const logo = 'event_1756870408.jpg'
     return (
         <div className="text-black p-4 mt-12 h-fit">
             <div className="flex items-center gap-4 mb-6">
-                <img className="w-24 h-24 mb-3 rounded-full shadow-lg" src={`./../storage/uploads/${logo}`} alt="logo" />
+                <img className="w-24 h-24 mb-3 rounded-full shadow-lg" src={`./../storage/uploads/${org.logo}`} alt="logo" />
                 <div>
                     <h1 className="text-2xl font-bold">{org.title}</h1>
                     <p className="">{org.description}</p>
@@ -21,16 +20,17 @@ export default function OrgView() {
                         <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">{org.advisor}</h5>
                         <p className="font-normal text-gray-700">Advisor</p>
                     </div>
-                    <div className="mb-4 grid grid-cols-1 lg:grid-cols-2 gap-4">
-                        <div className="block p-6 bg-white border border-gray-200 rounded-lg shadow-sm">
-                            <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">Mission</h5>
-                            <p className="font-normal text-gray-700">{org.mission}</p>
-                        </div>
-                        <div className="block p-6 bg-white border border-gray-200 rounded-lg shadow-sm">
-                            <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">Vision</h5>
-                            <p className="font-normal text-gray-700">{org.vision}</p>
-                        </div>
-                    </div>
+                    {org.org_type == 'org' ?
+                        <div className="mb-4 flex flex-wrap gap-4">
+                            <div className="block w-full p-6 bg-white border border-gray-200 rounded-lg shadow-sm">
+                                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">Mission</h5>
+                                <p className="font-normal text-gray-700">{org.mission}</p>
+                            </div>
+                            <div className="block w-full p-6 bg-white border border-gray-200 rounded-lg shadow-sm">
+                                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">Vision</h5>
+                                <p className="font-normal text-gray-700">{org.vision}</p>
+                            </div>
+                        </div> : ''}
                 </div>
                 <div className="mb-8 border border-gray-200 rounded-lg shadow-xs md:mb-12 md:grid-cols-2 bg-white overflow-hidden">
                     <div className="flex items-center justify-between bg-green-primary">

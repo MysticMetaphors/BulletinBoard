@@ -10,7 +10,7 @@ export default function Announcement() {
         <>
             <div className="w-full h-full px-8 sm:px-12 lg:px-24">
                 <h1 className="text-4xl font-bold mb-4 mt-12 md:px-26">Announcements</h1>
-                <div className="grid grid-cols-3 gap-5 justify-center px-0 lg:px-24">
+                <div className="grid grid-row md:grid-cols-3 gap-5 justify-center px-0 lg:px-24">
                     {anno.map((annos) => (
                         <div className="max-w-90 p-6 pb-15 bg-white border border-gray-200 rounded-lg shadow-sm relative">
 
