@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Event;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Inertia\Inertia;
 
@@ -61,6 +62,9 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
         if ($user == null) return dd($user);
+        if ($user->id != Auth::user()->id) {
+            abort(403, 'Forbidden');
+        }
         return Inertia::render('Dashboard/Profile', ['user' => $user]);
     }
 

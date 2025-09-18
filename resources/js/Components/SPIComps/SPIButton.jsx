@@ -1,7 +1,7 @@
 import { router } from "@inertiajs/react"
 import { route } from "ziggy-js"
 
-export default function SPIButton({ text = 'Default', link_to, type = "button", theme}) {
+export default function SPIButton({ text = 'Default', link_to, type = "button", theme, ...props}) {
     function goToPage() {
         if (link_to) {
             router.visit(route(link_to))
@@ -18,7 +18,7 @@ export default function SPIButton({ text = 'Default', link_to, type = "button", 
     }
     return (
         <>
-            <button onClick={goToPage} type={type} className={`${setTheme(theme)}`}>
+            <button onClick={goToPage} {...props} type={type} className={`${setTheme(theme)}`}>
                 {text}
             </button>
         </>
