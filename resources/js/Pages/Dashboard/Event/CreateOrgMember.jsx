@@ -3,6 +3,8 @@ import DashboardLayout from "../../../Layouts/DashboardLayout"
 import { appendToast } from "../../../global";
 import { route } from "ziggy-js";
 import { router, usePage } from "@inertiajs/react";
+import DashboardHeader from "../../../Components/DashboardHeader";
+import SPIButton from "../../../Components/SPIComps/SPIButton";
 
 export default function CreateOrgMember() {
     const { errors, title, id } = usePage().props;
@@ -48,6 +50,7 @@ export default function CreateOrgMember() {
 
     return (
         <>
+            <DashboardHeader Head={`${title} New Member`} children={<SPIButton text="Back to Organization" link_to={['org.show', id]} theme={'secondary'} />} />
             <div className="text-black p-4 mt-12 h-fit overflow-y-auto overflow-visible">
                 <form action="" onSubmit={handleSubmit} className="lg:w-[50%]">
                     <div>

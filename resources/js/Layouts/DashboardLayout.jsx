@@ -10,11 +10,6 @@ export default function DashboardLayout({ children }) {
     const { auth } = usePage().props
     const [activePage, setActivePage] = useState(null);
 
-    function openNav() {
-        const nav = document.getElementById('logo-sidebar')
-        nav.classList.toggle('-translate-x-full')
-    }
-
     function toggleModal() {
         const modal = document.getElementById('logout-modal')
         modal.classList.toggle('hidden')
@@ -33,7 +28,7 @@ export default function DashboardLayout({ children }) {
 
     return (
         <>
-            <nav className="fixed top-0 z-50 w-full bg-green-primary border-b border-gray-200">
+            {/* <nav className="fixed top-0 z-50 w-full bg-green-primary border-b border-gray-200">
                 <Head title="SPI - Dashboard" />
                 <div className="px-3 py-3 lg:px-5 lg:pl-3">
                     <div className="flex items-center justify-between">
@@ -60,7 +55,7 @@ export default function DashboardLayout({ children }) {
                         </div>
                     </div>
                 </div>
-            </nav>
+            </nav> */}
 
             <aside id="logo-sidebar" className="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0">
                 <div className="h-full px-3 pb-4 overflow-y-auto bg-white">

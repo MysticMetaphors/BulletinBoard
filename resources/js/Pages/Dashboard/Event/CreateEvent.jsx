@@ -2,9 +2,12 @@ import { useEffect, useState } from "react";
 import { route } from "ziggy-js";
 import { router, usePage } from "@inertiajs/react";
 import DashboardLayout from "../../../Layouts/DashboardLayout";
+// import DefaultLayout from "../../../Layouts/DefaultLayout";
 import { appendToast } from "../../../global";
 import RichTextEditor from "../../../Components/RichTextEditor";
 import RichTextViewer from "../../../Components/RichTextDisplay";
+import DashboardHeader from "../../../Components/DashboardHeader";
+import SPIButton from "../../../Components/SPIComps/SPIButton";
 
 export default function CreateEvent() {
     const { errors } = usePage().props;
@@ -70,6 +73,7 @@ export default function CreateEvent() {
 
     return (
         <>
+        <DashboardHeader Head="Create Event" children={<SPIButton text="Back to Events" link_to={'event.dashboard'} theme={'secondary'} />}/>
             <div className="text-black p-4 mt-12 h-fit overflow-y-auto overflow-visible">
                 <ol className="items-center w-full space-y-4 sm:flex sm:space-x-8 sm:space-y-0 rtl:space-x-reverse mb-4">
                     <li
@@ -119,7 +123,7 @@ export default function CreateEvent() {
                     </li>
                 </ol>
 
-                <form className="lg:w-[50%]" onSubmit={handleSubmit}>
+                <form className={`${step == 2 ? 'w-full' : 'lg:w-[50%] '}`} onSubmit={handleSubmit}>
                     {/* ====================== Step 1 ====================== */}
                     {/* <RichTextEditor /> */}
                     {step == 1 ?
@@ -219,3 +223,4 @@ export default function CreateEvent() {
 }
 
 CreateEvent.layout = (page) => <DashboardLayout>{page}</DashboardLayout>
+// CreateEvent.layout = (page) => <DefaultLayout>{page}</DefaultLayout>

@@ -3,6 +3,8 @@ import SPIBadges from "../../Components/SPIComps/SPIBadge";
 import DashboardLayout from "../../Layouts/DashboardLayout";
 import { formatDate } from "../../global";
 import SPIDropdownMenu from "../../Components/SPIComps/SPIDropdownMenu";
+import DashboardHeader from "../../Components/DashboardHeader";
+import SPIButton from "../../Components/SPIComps/SPIButton";
 
 export default function User() {
     const { users } = usePage().props
@@ -25,6 +27,7 @@ export default function User() {
 
     return (
         <>
+        <DashboardHeader Head="Users" children={<SPIButton text="New User" link_to={'user.create'} theme={'secondary'} />}/>
             <div className="text-black p-4 mt-12 h-fit">
                 <div className="flex flex-row justify-between">
                     {/* <div className="relative mb-6">

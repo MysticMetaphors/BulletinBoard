@@ -4,7 +4,7 @@ import { route } from "ziggy-js"
 export default function SPIButton({ text = 'Default', link_to, type = "button", theme, ...props}) {
     function goToPage() {
         if (link_to) {
-            router.visit(route(link_to))
+            router.visit(route(typeof link_to === 'string' ? link_to : link_to));
         }
     }
 

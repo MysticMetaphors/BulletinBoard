@@ -2,10 +2,13 @@ import { Link, usePage } from "@inertiajs/react"
 import DashboardLayout from "../../Layouts/DashboardLayout"
 import SPIButton from "../../Components/SPIComps/SPIButton"
 import { route } from "ziggy-js"
+import DashboardHeader from "../../Components/DashboardHeader"
 
 export default function OrgView() {
     const { org, members } = usePage().props
     return (
+        <>
+        <DashboardHeader Head="OrganizationDetails" children={<Link href={route('org.dashboard')}><SPIButton text="Back to Organizations" theme={'secondary'} /></Link>} />
         <div className="text-black p-4 mt-12 h-fit">
             <div className="flex items-center gap-4 mb-6">
                 <img className="w-24 h-24 mb-3 rounded-full shadow-lg" src={`./../storage/uploads/${org.logo}`} alt="logo" />
@@ -35,7 +38,7 @@ export default function OrgView() {
                 <div className="mb-8 border border-gray-200 rounded-lg shadow-xs md:mb-12 md:grid-cols-2 bg-white overflow-hidden">
                     <div className="flex items-center justify-between bg-green-primary">
                         <h1 className="text-2xl font-bold text-white mx-8 mb-4 mt-6">Officers</h1>
-                        <Link href={route('member.create', { id: org.id })} className="mx-8">
+                        <Link href={route('member.create',{id:  org.id})} className="mx-8">
                             <SPIButton text="New Officer" theme={'secondary'} />
                         </Link>
                     </div>
@@ -59,6 +62,7 @@ export default function OrgView() {
                 </div>
             </div>
         </div>
+        </>
     )
 }
 

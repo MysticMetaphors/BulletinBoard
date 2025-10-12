@@ -2,6 +2,7 @@ import { usePage } from "@inertiajs/react"
 import DashboardLayout from "../../Layouts/DashboardLayout"
 import SPIButton from "../../Components/SPIComps/SPIButton"
 import { useState } from "react"
+import DashboardHeader from "../../Components/DashboardHeader"
 
 export default function Profile() {
     const { user } = usePage().props
@@ -12,6 +13,7 @@ export default function Profile() {
 
     return (
         <>
+            <DashboardHeader Head="Profile" />
             <div className="text-black p-4 mt-12 h-fit">
                 <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                     <div className="flex flex-col gap-4">
@@ -28,7 +30,7 @@ export default function Profile() {
                             <div className="relative block p-6 pt-10 bg-white border border-gray-200 rounded-lg shadow-sm">
                                 {/* <h1 className="text-[30px] font-bold mb-6"></h1> */}
                                 <div className="grid grid-row md:grid-cols-2 gap-5">
-                                    <span onClick={() => setState(prev => ({...prev, editing: !prev.editing}))} className="p-1 rounded-full hover:bg-gray-200 material-symbols-rounded absolute top-3 right-3 text-black cursor-pointer">
+                                    <span onClick={() => setState(prev => ({ ...prev, editing: !prev.editing }))} className="p-1 rounded-full hover:bg-gray-200 material-symbols-rounded absolute top-3 right-3 text-black cursor-pointer">
                                         close
                                     </span>
                                     <div className="mb-6">
@@ -44,7 +46,7 @@ export default function Profile() {
                         {states.password ?
                             <div className="relative block p-6 pt-10 bg-white border border-gray-200 rounded-lg shadow-sm">
                                 {/* <h1 className="text-[30px] font-bold mb-6"></h1> */}
-                                <span onClick={() => setState(prev => ({...prev, password: !prev.password}))} className="p-1 rounded-full hover:bg-gray-200 material-symbols-rounded absolute top-3 right-3 text-black cursor-pointer">
+                                <span onClick={() => setState(prev => ({ ...prev, password: !prev.password }))} className="p-1 rounded-full hover:bg-gray-200 material-symbols-rounded absolute top-3 right-3 text-black cursor-pointer">
                                     close
                                 </span>
                                 <div className="mb-6">

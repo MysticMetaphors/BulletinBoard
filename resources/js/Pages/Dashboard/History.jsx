@@ -1,9 +1,12 @@
 import DashboardLayout from "../../Layouts/DashboardLayout"
 import SPIDropdownMenu from "../../Components/SPIComps/SPIDropdownMenu"
 import SPIBadge from "../../Components/SPIComps/SPIBadge"
+import DashboardHeader from "../../Components/DashboardHeader"
 
 export default function History() {
     return (
+        <>
+        <DashboardHeader Head="History" />
         <div className="text-black p-4 mt-12 h-fit">
             <div className="flex flex-row justify-between">
                 {/* <div className="relative mb-6">
@@ -114,6 +117,7 @@ export default function History() {
                 </ul>
             </nav>
         </div>
+        </>
     )
 }
 

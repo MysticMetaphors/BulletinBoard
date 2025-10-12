@@ -5,6 +5,8 @@ import SPIDropdownMenu from "../../Components/SPIComps/SPIDropdownMenu";
 import { formatDate } from "../../global";
 import { formatTime } from "../../global";
 import EditableDropdown from "../../Components/EditableDropdown";
+import DashboardHeader from "../../Components/DashboardHeader";
+import SPIButton from "../../Components/SPIComps/SPIButton";
 
 export default function Event() {
     const { event } = usePage().props
@@ -26,6 +28,7 @@ export default function Event() {
 
     return (
         <>
+            <DashboardHeader Head="Events" children={<SPIButton text="New Event" link_to={'event.create'} theme={'secondary'} />} />
             <div className="text-black p-4 mt-12 h-fit">
                 <div className="flex flex-row justify-between">
                     {/* <div className="relative mb-6">
@@ -83,9 +86,9 @@ export default function Event() {
                                         <div className="grid grid-flow-col gap-0 place-items-center w-fit">
                                             <SPIBadges theme={setTheme(events.status)} text={events.status} />
                                             <EditableDropdown selected={events.status} items={[
-                                                {text: 'Released', link: 'event.update_stat', param: [events.id, 'Released']},
-                                                {text: 'Draft', link: 'event.update_stat', param: [events.id, 'Draft']},
-                                            ]}/>
+                                                { text: 'Released', link: 'event.update_stat', param: [events.id, 'Released'] },
+                                                { text: 'Draft', link: 'event.update_stat', param: [events.id, 'Draft'] },
+                                            ]} />
                                         </div>
                                     </td>
                                     <td className="px-6 py-2">
@@ -95,7 +98,7 @@ export default function Event() {
                                         {formatTime(events.time)}
                                     </td>
                                     <td className="px-6 py-2 flex gap-2">
-                                        <SPIDropdownMenu view={['event.show', events.id]} remove={['event.update_stat', [events.id, 'Deprecated']]}/>
+                                        <SPIDropdownMenu view={['event.show', events.id]} remove={['event.update_stat', [events.id, 'Deprecated']]} />
                                     </td>
                                 </tr>
                             ))}
