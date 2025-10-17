@@ -13,7 +13,7 @@ import Bold from 'https://esm.sh/@tiptap/extension-bold@2.6.6'
 import Blockquote from 'https://esm.sh/@tiptap/extension-blockquote@2.6.6'
 import { useEffect, useMemo } from 'react'
 
-export default function RichTextViewer({ content, title = 'No title', addons = '' }) {
+export default function RichTextViewer({ contents, title = 'No title', addons = '' }) {
 
     const GreenBlockquote = Blockquote.extend({
         addAttributes() {
@@ -42,6 +42,7 @@ export default function RichTextViewer({ content, title = 'No title', addons = '
             };
         },
     });
+
     const CustomBold = Bold.extend({
         renderHTML({ mark, HTMLAttributes }) {
             const { style, ...rest } = HTMLAttributes;
@@ -90,20 +91,30 @@ export default function RichTextViewer({ content, title = 'No title', addons = '
             editable: false,
             element: document.querySelector('#wysiwyg-display'),
             extensions: extensions,
-            content: `<blockquote class="fill-primary-green pl-4"><p><span style="font-size: 36px;">${title}</span></p></blockquote> ${addons} ${content}`,
+            content: `
+                <blockquote class="fill-primary-green pl-4">
+                    <p><span>${title}</span></p>
+                </blockquote>
+                ${addons}
+                ${contents}
+            `,
             editorProps: {
                 attributes: {
-                    class: 'format text-black lg:format-lg focus:outline-none format-blue max-w-none',
+                    class: 'prose max-w-none text-black',
                 },
-            }
+            },
         });
-        if (!editor) return null
-    }, [content]);
+
+        return () => editor.destroy();
+    }, [title, addons, contents]);
+
 
     return (
         <>
-            <div id='wysiwyg-display'>
+            <div className="prose sm:prose-base md:prose-lg lg:prose-xl">
+                <div id='wysiwyg-display' >
 
+                </div>
             </div>
         </>
     )

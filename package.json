@@ -17,6 +17,7 @@
     "dependencies": {
         "@inertiajs/inertia": "^0.11.1",
         "@inertiajs/react": "^2.1.2",
+        "@tailwindcss/typography": "^0.5.19",
         "@tiptap/core": "^3.3.0",
         "@tiptap/pm": "^3.3.0",
         "@tiptap/react": "^3.3.0",

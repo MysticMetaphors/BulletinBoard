@@ -719,7 +719,7 @@ export default function RichTextEditor({ value = "", onChange, name = "content" 
                         </div>
                     </div>
                 </div>
-                <div className="px-4 h-fit py-2 bg-white text-black rounded-b-lg">
+                <div className="px-4 h-fit py-2 bg-white text-black rounded-b-lg prose sm:prose-base md:prose-lg lg:prose-xl">
                     <label for="wysiwyg-example" className="sr-only">Write comment</label>
                     <div name={name} id="wysiwyg-example" className="block w-full px-0 text-sm bg-white border-0 focus:ring-0"></div>
                 </div>
