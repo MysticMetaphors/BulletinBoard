@@ -28,7 +28,7 @@ export default function Event() {
 
     return (
         <>
-            <DashboardHeader Head="Events" children={<SPIButton text="New Event" link_to={'event.create'} theme={'secondary'} />} />
+            <DashboardHeader title="Events" children={<SPIButton text="New Event" link_to={'event.create'} theme={'secondary'} />} />
             <div className="text-black p-4 mt-12 h-fit">
                 <div className="flex flex-row justify-between">
                     {/* <div className="relative mb-6">

@@ -6,7 +6,7 @@ import DashboardHeader from "../../Components/DashboardHeader"
 export default function History() {
     return (
         <>
-        <DashboardHeader Head="History" />
+        <DashboardHeader title="History" />
         <div className="text-black p-4 mt-12 h-fit">
             <div className="flex flex-row justify-between">
                 {/* <div className="relative mb-6">

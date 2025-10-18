@@ -66,7 +66,7 @@ export default function CreateAnnounce() {
 
     return (
         <>
-            <DashboardHeader Head="Create Announcement" children={<SPIButton text="Back to Announcements" link_to={'announcement.dashboard'} theme={'secondary'} />} />
+            <DashboardHeader title="Create Announcement" children={<SPIButton text="Back to Announcements" link_to={'announcement.dashboard'} theme={'secondary'} />} />
             <div className="text-black p-4 mt-12 h-full overflow-y-auto overflow-visible">
                 <ol className="items-center w-full space-y-4 sm:flex sm:space-x-8 sm:space-y-0 rtl:space-x-reverse mb-4">
                     <li

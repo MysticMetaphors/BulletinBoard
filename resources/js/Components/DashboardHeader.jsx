@@ -1,10 +1,10 @@
-import { Link, usePage } from "@inertiajs/react";
+import { Head, Link, usePage } from "@inertiajs/react";
 import ProfileDropdown from "./ProfileDropdown";
 import { route } from "ziggy-js";
 
 import logo from '../assets/SkillPowerInstituteLogo.png'
 
-export default function DashboardHeader({ Head, children }) {
+export default function DashboardHeader({ title, children }) {
     const { auth } = usePage().props
 
     function openNav() {
@@ -16,7 +16,7 @@ export default function DashboardHeader({ Head, children }) {
 
     return (
         <nav className="fixed top-0 left-0 z-50 w-full bg-green-primary border-b border-gray-200">
-            {/* <Head title={`${Head ? Head : 'SPI - Dashboard'}`} /> */}
+            <Head title={`${title ? title : 'SPI - Dashboard'}`} />
 
             <div className="px-3 py-3 lg:px-5 lg:pl-3">
                 <div className="flex items-center justify-between">

@@ -28,9 +28,9 @@ export default function ProfileDropdown({ auth }) {
                             <Link href={route('user.show', auth.id)} className="block px-4 py-2 hover:bg-gray-100">My Profile</Link>
                         </li>
                     </ul>
-                    <div className="py-2">
+                    {/* <div className="py-2">
                         <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Sign out</a>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </>

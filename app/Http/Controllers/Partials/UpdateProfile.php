@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
-class LoginController extends Controller
+class UpdateProfile extends Controller
 {
     public function index()
     {
@@ -20,6 +20,7 @@ class LoginController extends Controller
         try {
             $credentials = $request->validate([
                 'email' => 'required|email',
+                'name' => 'required|string',
                 'password' => 'required|min:8',
             ]);
         } catch (\Illuminate\Validation\ValidationException $e) {

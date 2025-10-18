@@ -73,7 +73,7 @@ export default function CreateEvent() {
 
     return (
         <>
-        <DashboardHeader Head="Create Event" children={<SPIButton text="Back to Events" link_to={'event.dashboard'} theme={'secondary'} />}/>
+        <DashboardHeader title="Create Event" children={<SPIButton text="Back to Events" link_to={'event.dashboard'} theme={'secondary'} />}/>
             <div className="text-black p-4 mt-12 h-fit overflow-y-auto overflow-visible">
                 <ol className="items-center w-full space-y-4 sm:flex sm:space-x-8 sm:space-y-0 rtl:space-x-reverse mb-4">
                     <li

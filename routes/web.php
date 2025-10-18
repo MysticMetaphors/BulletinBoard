@@ -5,6 +5,8 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\OrgController;
 use App\Http\Controllers\OrgMemberController;
 use App\Http\Controllers\Organization\FoundationController;
+use App\Http\Controllers\Partials\UpdatePassword;
+use App\Http\Controllers\Partials\UpdateProfile;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -24,7 +26,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('event/dashboard', [EventController::class, 'dashboard'])
         ->name('event.dashboard');
 
-    // // ================= ORGANIZATIONS =================
+    // ================= ORGANIZATIONS =================
     Route::get('org/dashboard', [OrgController::class, 'dashboard'])
         ->name('org.dashboard');
     // Route::get('org/foundation/{id}', [OrgController::class, 'foundation'])
@@ -33,6 +35,12 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/history', function () {
         return Inertia::render('Dashboard/History');
     })->name('history');
+
+    // ================= USER =================
+    Route::post('user/update_password', [UpdatePassword::class, 'update'])
+        ->name('user.update_password');
+    // Route::post('user/update_profile/{id}', [UpdateProfile::class, 'update'])
+    //     ->name('user.update_profile');
 });
 
 Route::resource('announcement', AnnouncementController::class);

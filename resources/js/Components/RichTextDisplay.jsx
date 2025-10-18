@@ -13,7 +13,7 @@ import Bold from 'https://esm.sh/@tiptap/extension-bold@2.6.6'
 import Blockquote from 'https://esm.sh/@tiptap/extension-blockquote@2.6.6'
 import { useEffect, useMemo } from 'react'
 
-export default function RichTextViewer({ contents, title = 'No title', addons = '' }) {
+export default function RichTextViewer({ content, title = 'No title', addons = '' }) {
 
     const GreenBlockquote = Blockquote.extend({
         addAttributes() {
@@ -96,7 +96,7 @@ export default function RichTextViewer({ contents, title = 'No title', addons = 
                     <p><span>${title}</span></p>
                 </blockquote>
                 ${addons}
-                ${contents}
+                ${content}
             `,
             editorProps: {
                 attributes: {
@@ -106,7 +106,7 @@ export default function RichTextViewer({ contents, title = 'No title', addons = 
         });
 
         return () => editor.destroy();
-    }, [title, addons, contents]);
+    }, [title, addons, content]);
 
 
     return (

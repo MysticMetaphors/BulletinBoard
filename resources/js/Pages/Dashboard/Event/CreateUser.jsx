@@ -52,7 +52,7 @@ export default function CreateUser() {
 
     return (
         <>
-        <DashboardHeader Head="Create User" children={<SPIButton text="Back to Users" link_to={'user.index'} theme={'secondary'} />} />
+        <DashboardHeader title="Create User" children={<SPIButton text="Back to Users" link_to={'user.index'} theme={'secondary'} />} />
             <div className="text-black p-4 mt-12 h-fit overflow-y-auto overflow-visible">
                 <form action="" className="lg:w-[50%]" onSubmit={handleSubmit}>
                     <h1 className="text-[30px] font-bold mb-6">New user</h1>

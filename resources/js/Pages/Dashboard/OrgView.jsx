@@ -8,7 +8,7 @@ export default function OrgView() {
     const { org, members } = usePage().props
     return (
         <>
-        <DashboardHeader Head="OrganizationDetails" children={<Link href={route('org.dashboard')}><SPIButton text="Back to Organizations" theme={'secondary'} /></Link>} />
+        <DashboardHeader title="OrganizationDetails" children={<Link href={route('org.dashboard')}><SPIButton text="Back to Organizations" theme={'secondary'} /></Link>} />
         <div className="text-black p-4 mt-12 h-fit">
             <div className="flex items-center gap-4 mb-6">
                 <img className="w-24 h-24 mb-3 rounded-full shadow-lg" src={`./../storage/uploads/${org.logo}`} alt="logo" />

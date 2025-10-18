@@ -65,7 +65,7 @@ export default function CreateOrg() {
 
     return (
         <>
-        <DashboardHeader Head="Create Organization" children={<SPIButton text="Back to Organizations" link_to={'org.dashboard'} theme={'secondary'} />} />
+        <DashboardHeader title="Create Organization" children={<SPIButton text="Back to Organizations" link_to={'org.dashboard'} theme={'secondary'} />} />
             <div className="text-black p-4 mt-12 h-fit overflow-y-auto overflow-visible">
                 <ol className="items-center w-full space-y-4 sm:flex sm:space-x-8 sm:space-y-0 rtl:space-x-reverse mb-4">
                     <li

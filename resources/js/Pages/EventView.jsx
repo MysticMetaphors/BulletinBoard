@@ -10,7 +10,7 @@ export default function EventView() {
         <>
             <div className="w-full h-full pt-10 px-10 sm:px-10 lg:px-100">
                 <div className="text-2xl text-justify">
-                    <RichTextViewer contents={event.content} title={event.title}
+                    <RichTextViewer content={event.content} title={event.title}
                     addons={`<p><span style="font-weight: bold;">Date:</span> ${formatDate(event.start)}<br><span style="font-weight: bold;">Time:</span> ${formatTime(event.time)}<br><span style="font-weight: bold;">Location:</span> ${event.location}</p>`}/>
                 </div>
             </div>

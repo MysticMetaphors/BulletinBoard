@@ -10,7 +10,7 @@ export default function Organization() {
 
     return (
         <>
-        <DashboardHeader Head="Organizations" children={<SPIButton text="New Organization" link_to={'org.create'} theme={'secondary'} />} />
+        <DashboardHeader title="Organizations" children={<SPIButton text="New Organization" link_to={'org.create'} theme={'secondary'} />} />
             <div className="text-black p-4 mt-12 h-fit grid grid-cols-3 gap-5 justify-center">
                 {org.map((orgs) => (
                     <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm mb-1">

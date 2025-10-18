@@ -9,7 +9,7 @@ export default function AnnoView() {
         <>
             <div className="w-full h-full pt-10 px-10 sm:px-10 lg:px-100">
                 <div className="text-2xl text-justify">
-                    <RichTextViewer contents={anno.content} title={anno.title}/>
+                    <RichTextViewer content={anno.content} title={anno.title}/>
                 </div>
             </div>
         </>

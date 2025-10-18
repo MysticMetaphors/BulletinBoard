@@ -50,7 +50,7 @@ export default function CreateOrgMember() {
 
     return (
         <>
-            <DashboardHeader Head={`${title} New Member`} children={<SPIButton text="Back to Organization" link_to={['org.show', id]} theme={'secondary'} />} />
+            <DashboardHeader title={`${title} New Member`} children={<SPIButton text="Back to Organization" link_to={['org.show', id]} theme={'secondary'} />} />
             <div className="text-black p-4 mt-12 h-fit overflow-y-auto overflow-visible">
                 <form action="" onSubmit={handleSubmit} className="lg:w-[50%]">
                     <div>
